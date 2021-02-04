@@ -5,12 +5,19 @@
  */
 package controlador.servlet;
 
+import controlador.util.CaException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.database.ParqueaderoDAO;
+import modelo.logica.GestorParqueadero;
+import modelo.logica.Parqueadero;
 
 /**
  *
@@ -31,7 +38,11 @@ public class crearParqueadero extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+           
+            GestorParqueadero gestor = new GestorParqueadero();
+            
+            Parqueadero p = gestor.getParqueadero();
+            
            
         }
     }
@@ -49,6 +60,29 @@ public class crearParqueadero extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        HttpSession lol = request.getSession();
+        
+        int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero"));
+        float v_nfs  = Float.valueOf(request.getParameter("v_nfs"));
+        int q_areas = Integer.valueOf(request.getParameter("q_areas"));
+        String n_direccion = request.getParameter("n_direccion");
+        String n_localidad = request.getParameter("n_localidad");
+        
+        GestorParqueadero gestor = new GestorParqueadero();
+        Parqueadero p = gestor.getParqueadero();
+        
+        p.setK_idParqueadero(k_idParqueadero);
+        p.setV_nfs(v_nfs);
+        p.setQ_areas(q_areas);
+        p.setN_direccion(n_direccion);
+        p.setN_localidad(n_localidad);
+        
+        try {
+            gestor.incluirParqueadero();
+        } catch (CaException ex) {
+            Logger.getLogger(crearParqueadero.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

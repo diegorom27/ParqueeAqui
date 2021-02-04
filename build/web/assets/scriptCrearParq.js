@@ -2,6 +2,7 @@ window.addEventListener("scroll", function () {
 var header = document.querySelector("header");
         header.classList.toggle("sticky", window.scrollY > 0);
 });
+/*
         var creacionParqueadero = document.getElementById("creacionParqueadero");
         var buttonCrearParqueadero = document.getElementById("buttonCrearParqueadero");
         var contenedor = document.getElementById("contenedor");
@@ -69,6 +70,7 @@ var header = document.querySelector("header");
         });
         }
         });
+*/
 
 //aun no funciona correctamente el envio
 /*
@@ -110,44 +112,3 @@ $(document).ready(function(){
    return false;
 });
 */
-/* acordeon */
-var flecha = document.getElementsByClassName("flecha");
-var opcion = document.getElementsByClassName("opcion"); 
-var negrita = document.getElementsByClassName("negrita");
-
-var caja = document.getElementById("caja");
-
-for (let index = 0; index < opcion.length; index++) {
-    opcion[index].addEventListener("click",function(){
-        var seleccionado = opcion[index].nextElementSibling;
-        if(seleccionado.style.display=="block"){
-            seleccionado.style.display="none";
-            seleccionado.style.borderBottom="none";
-            opcion[index].style.borderBottom="solid hsl(240, 6%, 50%)";
-            negrita[index].style.fontWeight="normal";
-            if(seleccionado.style.display=="none"){
-                flecha[index].style.transform="rotate(0)";
-            }
-        }else{
-            seleccionado.style.display="block";
-            opcion[index].style.fontWeight="600";
-            opcion[index].style.borderBottom="none";
-            seleccionado.style.borderBottom="solid hsl(240, 6%, 50%)";
-            negrita[index].style.fontWeight="bolder";
-            if(seleccionado.style.display=="block"){
-                flecha[index].style.transform="rotate(-180deg)";
-            }
-        }
-    });    
-}
-for (let index = 0; index < opcion.length; index++) {
-    negrita[index].addEventListener("mouseover",function(){
-            caja.style.left="106px";  
-    });
-}
-for (let index = 0; index < opcion.length; index++) {
-    negrita[index].addEventListener("mouseleave",function(){
-            caja.style.left="138px";  
-    });
-}
-/* acordeon */

@@ -70,17 +70,17 @@
                 </tr>
             </table>
         </div>
-        <form id="creacionParqueadero" action="crearParqueadero" method="POST">
+        <form id="creacionParqueadero" action="crearParqueadero" method="GET">
             <label><b>ID:</b></label>
-            <input type="number" id="idParqueadero" placeholder="ID" autofocus required>
+            <input type="number" name="k_idParqueadero" id="idParqueadero" placeholder="ID" autofocus required>
             <label><b>Numero de areas:</b></label>
-            <input type="number" id="numeroDeAreas" placeholder="areas" autofocus required>
+            <input type="number" name="v_nfs" id="numeroDeAreas" placeholder="areas" autofocus required>
             <label><b>Direccion:</b></label>
-            <input type="text" id="direccion" placeholder="direccion" autofocus required>
+            <input type="text" name="q_areas" id="direccion" placeholder="direccion" autofocus required>
             <label><b>Localidad:</b></label>
-            <input type="text" id="localidad" placeholder="localidad" autofocus required>
+            <input type="text" name="n_direccion" id="localidad" placeholder="localidad" autofocus required>
             <label><b>FNS:</b></label>
-            <input type="text" id="FNS" placeholder="FNS" autofocus required>
+            <input type="text" name="n_localidad" id="FNS" placeholder="FNS" autofocus required>
             <button type="submit" id="buttonCrearParqueadero">submit</button>
         </form>
     </div>
