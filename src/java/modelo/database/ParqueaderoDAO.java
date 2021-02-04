@@ -34,14 +34,14 @@ public class ParqueaderoDAO {
     
     public void incluirParqueadero() throws CaException {
         try {
-            String strSQL = "INSERT INTO Parqueadero (k_idParqueadero, v_nfs, q_areas, n_direccion, n_localidad) VALUES(?,?,?,?,?)";
+            String strSQL = "INSERT INTO Parqueadero (k_idParqueadero, q_areas, n_direccion, n_localidad, v_nfs) VALUES(?,?,?,?,?)";
         Connection conexion = ServiceLocator.getInstance().tomarConexion();
         PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
         prepStmt.setInt(1,parqueadero.getK_idParqueadero()); 
-        prepStmt.setFloat(2, parqueadero.getV_nfs()); 
-        prepStmt.setInt(3, parqueadero.getQ_areas()); 
-        prepStmt.setString(4, parqueadero.getN_direccion()); 
-        prepStmt.setString(5, parqueadero.getN_localidad()); 
+        prepStmt.setInt(2, parqueadero.getQ_areas()); 
+        prepStmt.setString(3, parqueadero.getN_direccion()); 
+        prepStmt.setString(4, parqueadero.getN_localidad()); 
+        prepStmt.setFloat(5, parqueadero.getV_nfs());
         prepStmt.executeUpdate();
         prepStmt.close();
         ServiceLocator.getInstance().commit();

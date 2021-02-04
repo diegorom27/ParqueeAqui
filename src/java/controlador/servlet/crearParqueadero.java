@@ -37,13 +37,31 @@ public class crearParqueadero extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession lol = request.getSession();
+        
+        int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero"));
+        int q_areas = Integer.valueOf(request.getParameter("q_areas"));
+        String n_direccion = request.getParameter("n_direccion");
+        String n_localidad = request.getParameter("n_localidad");
+        float v_nfs  = Float.valueOf(request.getParameter("v_nfs"));
+        
+        GestorParqueadero gestor = new GestorParqueadero();
+        Parqueadero p = gestor.getParqueadero();
+        
+        p.setK_idParqueadero(k_idParqueadero);
+        p.setV_nfs(v_nfs);
+        p.setQ_areas(q_areas);
+        p.setN_direccion(n_direccion);
+        p.setN_localidad(n_localidad);
+        
+        try {
+            gestor.incluirParqueadero();
+        } catch (CaException ex) {
+            Logger.getLogger(crearParqueadero.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        response.sendRedirect("index.html");
         try (PrintWriter out = response.getWriter()) {
-           
-            GestorParqueadero gestor = new GestorParqueadero();
-            
-            Parqueadero p = gestor.getParqueadero();
-            
-           
         }
     }
 
@@ -60,29 +78,6 @@ public class crearParqueadero extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        HttpSession lol = request.getSession();
-        
-        int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero"));
-        float v_nfs  = Float.valueOf(request.getParameter("v_nfs"));
-        int q_areas = Integer.valueOf(request.getParameter("q_areas"));
-        String n_direccion = request.getParameter("n_direccion");
-        String n_localidad = request.getParameter("n_localidad");
-        
-        GestorParqueadero gestor = new GestorParqueadero();
-        Parqueadero p = gestor.getParqueadero();
-        
-        p.setK_idParqueadero(k_idParqueadero);
-        p.setV_nfs(v_nfs);
-        p.setQ_areas(q_areas);
-        p.setN_direccion(n_direccion);
-        p.setN_localidad(n_localidad);
-        
-        try {
-            gestor.incluirParqueadero();
-        } catch (CaException ex) {
-            Logger.getLogger(crearParqueadero.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
