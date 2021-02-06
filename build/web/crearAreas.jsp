@@ -32,17 +32,18 @@
             </ul>
         </header>
         <div class="contenedor" id="contenedorArea">
-            <form id="creacionAreas" action="crearAreas" method="post">
+            <form id="creacionAreas" action="crearAreas" method="get">
+                <input name="numeroDeAreas" value="<%=a.getQ_areas()%>" type="hidden">
                 <% while (i < a.getQ_areas()) {%>
                 <div class="contenedorA">
                     <label ><b id="idParq">ID:   <%=a.getK_idParqueadero()%></b></label><br>
-                    <input type="hidden" name="k_idParqueadero<%=(i+1)%>" value="<%=a.getK_idParqueadero()%>" id="idParqueadero" placeholder="ID" autofocus required>
+                    <input type="hidden" name="k_idParqueadero<%=(i+1)%>" value="<%=a.getK_idParqueadero()%>"  placeholder="ID" autofocus required>
                     <label><b>k_idArea:</b></label>
-                    <input type="number" name="k_idArea<%=(i+1)%>" value="<%=(i+1)%>" placeholder="areas" autofocus required>
+                    <input type="number" name="k_idArea<%=(i+1)%>" value="<%=(i+1)%>" placeholder="area" autofocus required>
                     <label><b>q_cuposTotales:</b></label>
-                    <input type="text" name="q_cuposTotales<%=(i+1)%>" id="direccion" placeholder="direccion" autofocus required>
+                    <input type="number" name="q_cuposTotales<%=(i+1)%>"  placeholder="cupos totales" autofocus required>
                     <label><b>i_tipo</b></label>
-                    <input type="text" name="i_tipo<%=(i+1)%>"placeholder="localidad" autofocus required>
+                    <input type="number" name="i_tipo<%=(i+1)%>"placeholder="tipo" autofocus required>
                 </div>
                 <% i++;
                     }%>

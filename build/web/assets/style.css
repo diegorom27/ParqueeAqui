@@ -214,7 +214,7 @@ button{
     width: 800px;
     height: 400px;
     z-index: 4;
-    overflow: auto; 
+    overflow-y: auto; 
     margin: auto;
     margin-top: 100px;
     background-color: hsl(240, 5%, 91%);
@@ -224,6 +224,9 @@ button{
     grid-template-columns: repeat(2,1fr);
     grid-template-rows: 1;
     gap: 49px;
+}
+#contenedorIndex::-webkit-scrollbar {
+    display: none;
 }
 #ImgAutos{
     position: absolute;
@@ -264,7 +267,9 @@ p{
     height: 500px;
     overflow: auto;
 }
-
+#informacion::-webkit-scrollbar {
+    display: none;
+}
 #caja{
     z-index: 5;
     position: absolute;

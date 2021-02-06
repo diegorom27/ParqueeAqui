@@ -5,12 +5,17 @@
  */
 package controlador.servlet;
 
+import controlador.util.CaException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.logica.Area;
+import modelo.logica.GestorParqueadero;
 
 /**
  *
@@ -30,18 +35,32 @@ public class crearAreas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet crearArea</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet crearArea at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        int numeroDeAreas = Integer.valueOf(request.getParameter("numeroDeAreas"));
+        int i = 0;
+        GestorParqueadero gestor = new GestorParqueadero();
+        Area a = gestor.getArea();
+
+        while (i < numeroDeAreas) {
+            i++;
+            int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero" + i));
+            String k_idArea = request.getParameter("k_idArea" + i);
+            int q_cuposTotales = Integer.valueOf(request.getParameter("k_idArea" + i));
+            int i_tipo = Integer.valueOf(request.getParameter("i_tipo"+i));
+            a.setK_idParqueadero(k_idParqueadero);
+            a.setK_idArea(k_idArea);
+            a.setQ_cuposTotales(q_cuposTotales);
+            a.setQ_cuposDisponibles(q_cuposTotales);
+            a.setI_tipo(i_tipo);
+
+            try {
+                gestor.incluirArea();
+
+            } catch (CaException ex) {
+                Logger.getLogger(crearAreas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        response.sendRedirect("index.html");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

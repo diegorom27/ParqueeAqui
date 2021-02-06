@@ -5,7 +5,7 @@
         <servlet-class>controlador.servlet.crearParqueadero</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>crearArea</servlet-name>
+        <servlet-name>crearAreas</servlet-name>
         <servlet-class>controlador.servlet.crearAreas</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -13,8 +13,8 @@
         <url-pattern>/crearParqueadero</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>crearArea</servlet-name>
-        <url-pattern>/crearArea</url-pattern>
+        <servlet-name>crearAreas</servlet-name>
+        <url-pattern>/crearAreas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

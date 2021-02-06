@@ -75,7 +75,7 @@
             <input type="number" name="k_idParqueadero" id="idParqueadero" placeholder="ID" autofocus required>
             <label><b>Numero de areas:</b></label>
             <input type="number" name="q_areas" id="numeroDeAreas" placeholder="areas" autofocus required>
-            <label><b>Direccion:</b></label>
+            <label><b>Dirección:</b></label>
             <input type="text" name="n_direccion" id="direccion" placeholder="direccion" autofocus required>
             <label><b>Localidad:</b></label>
             <input type="text" name="n_localidad" id="localidad" placeholder="localidad" autofocus required>

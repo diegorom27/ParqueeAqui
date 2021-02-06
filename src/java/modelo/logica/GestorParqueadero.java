@@ -6,6 +6,7 @@
 package modelo.logica;
 
 import controlador.util.CaException;
+import modelo.database.AreaDAO;
 import modelo.database.ParqueaderoDAO;
 
 /**
@@ -15,16 +16,26 @@ import modelo.database.ParqueaderoDAO;
 public class GestorParqueadero {
     
     private ParqueaderoDAO parqueaderoDAO= new ParqueaderoDAO();
+    private AreaDAO areaDAO= new AreaDAO();
     
     public GestorParqueadero() {
         parqueaderoDAO = new ParqueaderoDAO();
+        areaDAO= new AreaDAO();
+        
     }
     public void incluirParqueadero() throws CaException {
       parqueaderoDAO.incluirParqueadero();
     }
-
+    public void incluirArea() throws CaException {
+      areaDAO.incluirArea();
+    }
 
     public Parqueadero getParqueadero() {
         return parqueaderoDAO.getParqueadero();
     }
+
+    public Area getArea() {
+        return areaDAO.getArea();
+    }
+    
 }
