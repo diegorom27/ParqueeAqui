@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>crearArea</servlet-name>
-        <servlet-class>controlador.servlet.crearArea</servlet-class>
+        <servlet-class>controlador.servlet.crearAreas</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>crearParqueadero</servlet-name>

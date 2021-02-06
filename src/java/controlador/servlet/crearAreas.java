@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author diego
  */
-public class crearArea extends HttpServlet {
+public class crearAreas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
