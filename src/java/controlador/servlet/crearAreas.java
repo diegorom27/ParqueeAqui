@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.logica.Area;
+import modelo.logica.Cupo;
 import modelo.logica.GestorParqueadero;
 
 /**
@@ -38,15 +39,18 @@ public class crearAreas extends HttpServlet {
 
         int numeroDeAreas = Integer.valueOf(request.getParameter("numeroDeAreas"));
         int i = 0;
+        int j = 0;
         GestorParqueadero gestor = new GestorParqueadero();
+        GestorParqueadero gestorC = new GestorParqueadero();
         Area a = gestor.getArea();
+        Cupo c = gestorC.getCupo();
 
         while (i < numeroDeAreas) {
             i++;
             int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero" + i));
             String k_idArea = request.getParameter("k_idArea" + i);
-            int q_cuposTotales = Integer.valueOf(request.getParameter("k_idArea" + i));
-            int i_tipo = Integer.valueOf(request.getParameter("i_tipo"+i));
+            int q_cuposTotales = Integer.valueOf(request.getParameter("q_cuposTotales" + i));
+            int i_tipo = Integer.valueOf(request.getParameter("i_tipo" + i));
             a.setK_idParqueadero(k_idParqueadero);
             a.setK_idArea(k_idArea);
             a.setQ_cuposTotales(q_cuposTotales);
@@ -59,6 +63,20 @@ public class crearAreas extends HttpServlet {
             } catch (CaException ex) {
                 Logger.getLogger(crearAreas.class.getName()).log(Level.SEVERE, null, ex);
             }
+            while (j < q_cuposTotales) {
+                j++;
+                c.setI_estado("v");
+                c.setK_idArea(k_idArea);
+                c.setK_idParqueadero(k_idParqueadero);
+                try {
+                    gestorC.incluirCupo();
+
+                } catch (CaException ex) {
+                    Logger.getLogger(crearAreas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            j = 0;
+
         }
         response.sendRedirect("index.html");
     }
