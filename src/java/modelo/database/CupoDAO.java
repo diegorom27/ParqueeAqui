@@ -34,7 +34,8 @@ public class CupoDAO {
 
     public void incluirCupo() throws CaException {
         try {
-            String strSQL = "INSERT INTO cupo (i_estado, k_idArea, k_idParqueadero) VALUES(?,?,?,?)";
+            
+            String strSQL = "INSERT INTO cupo (i_estado, k_idArea, k_idParqueadero) VALUES(?,?,?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             prepStmt.setString(1, cupo.getI_estado());
