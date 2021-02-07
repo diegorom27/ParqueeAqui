@@ -14,10 +14,7 @@
     ArrayList<Cliente> cl = gestor.cargarClientes();
     int i = 0;
     
-    GestorParqueadero gestor1 = new GestorParqueadero();
-    ArrayList<Vehiculo> v = gestor1.cargarVehiculos();
-    int j = 0;
-     
+
 %>
 <!DOCTYPE html>
 <head>
@@ -59,10 +56,7 @@ integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="ano
             <div class="crearContrato" id="creaVehiculo">
                 <input type="list" id="buscarVehiculo">
                 <datalist id="buscarVehiculo">
-                    <% while (j < v.size()) {%>
-                    <option value="<%= v.get(j).getK_idVehiculo()%>">
-                        <%j++;
-                        } %>
+                    
                 </datalist>
             </div >
             <div class="crearContrato" id="creaContrato">
