@@ -1,4 +1,4 @@
- *{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -60,7 +60,8 @@ header ul li a{
 header.sticky ul li a{
     color: #000;
 }
-#elegida{color: #4a6983 ;
+#elegida{
+    color: #4a6983 ;
     font-weight: 900;
 }
 header.sticky #elegida{
@@ -124,9 +125,9 @@ th{
     border-style: solid ;
     letter-spacing: 3px;
 }
-  tbody tr:nth-child(even) {
+tbody tr:nth-child(even) {
     background-color: whitesmoke;
-  }
+}
 td{
     letter-spacing: 2px;
     padding-top: 7px;
@@ -255,7 +256,7 @@ button{
 }
 p{
     width: 470px;
-    
+
     display: inline-block;
     font-weight: 400;
     margin-right: 0px;
@@ -310,6 +311,7 @@ p{
     margin-right: 110px;
     height: fit-content;
     padding-bottom: 15px;
+    width: 500px ;
 }
 .seleccionado p{
     margin-left: 15px;
@@ -324,7 +326,7 @@ p{
 /*Crear Area */
 
 #creacionAreas{
-    
+
     border-radius: 0.6em;
     border: 2px double #2f4353;
     z-index: 1;
@@ -335,7 +337,7 @@ p{
     height: 275px;
     width: 400px;
     margin-top: 105px;
-    
+
     display:grid;
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: auto;
@@ -353,7 +355,7 @@ p{
     background-size: cover; 
     position:relative;
     top: 20px;
- 
+
 }
 #contenedorArea{
     height: 700px;

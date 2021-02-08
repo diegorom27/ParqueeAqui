@@ -23,7 +23,7 @@
         </a>
         <ul>
             <li><a id="elegida" href="#">Registro de parqueadero</a></li>
-            <li><a href="#">Gestion de parqueadero</a></li>
+            <li><a href="editarParqueadero.jsp">Gestion de parqueadero</a></li>
             <li><a href="#">Ingreso </a></li>
             <li><a href="#">Historial Ingresos</a></li>
             <li><a href="crearContrato.jsp">Vinculación contrato</a></li>

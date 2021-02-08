@@ -2,6 +2,7 @@ window.addEventListener("scroll", function () {
 var header = document.querySelector("header");
         header.classList.toggle("sticky", window.scrollY > 0);
 });
+
 var flecha = document.getElementsByClassName("flecha");
 var opcion = document.getElementsByClassName("opcion"); 
 var negrita = document.getElementsByClassName("negrita")
