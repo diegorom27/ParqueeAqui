@@ -365,3 +365,47 @@ p{
     height:205px;
 }
 /*Crear Area */
+/*Crear contrato */
+
+#creacionContrato{
+    border-radius: 0.6em;
+    border: 2px double #2f4353;
+    z-index: 1;
+    border-radius: 1.5em;
+    background-image: linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%);
+    margin-left:150px;
+    margin-top: 107px;
+    height: 500px;
+    width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+#encontrarParqueadero{
+    grid-column: 1/3;
+    grid-row: 1;
+}
+#creaCliente{
+    grid-column: 1;
+    grid-row: 2;
+    border-right:solid;
+    border-color: grey;
+}
+#creaVehiculo{
+    grid-column: 2;
+    grid-row: 2; 
+    border-right:solid;
+    border-color: grey;
+}
+#creaContrato{
+    grid-column: 3;
+    grid-row: 2;
+}
+#buttonCrearContrato{
+    grid-column: 1/3;
+    grid-row: 3;
+    width: 1000px;
+    position: relative;
+    top: 37px;
+}
+/*Crear contrato */
