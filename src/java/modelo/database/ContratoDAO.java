@@ -68,18 +68,21 @@ public class ContratoDAO {
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             ResultSet rs = prepStmt.executeQuery();
             while (rs.next()) {
-                contrato.setK_idContrato(rs.getInt(1));
-                contrato.setQ_costoTotal(rs.getInt(2));
-                contrato.setF_fechaDeInicio(rs.getString(3));
-                contrato.setF_fechaDeFinalizacion(rs.getString(4));
-                contrato.setI_estado(rs.getString(5));
-                contrato.setK_idParqueadero(rs.getInt(6));
-                contrato.setK_cedula(rs.getInt(7));
-                contrato.setK_idVehiculo(rs.getInt(8));
-                contratos.add(contrato);
+                Contrato contrato1 = new Contrato();
+                contrato1.setK_idContrato(rs.getInt(1));
+                contrato1.setQ_costoTotal(rs.getInt(2));
+                contrato1.setF_fechaDeInicio(rs.getString(3));
+                contrato1.setF_fechaDeFinalizacion(rs.getString(4));
+                contrato1.setI_estado(rs.getString(5));
+                contrato1.setK_idParqueadero(rs.getInt(6));
+                contrato1.setK_cedula(rs.getInt(7));
+                contrato1.setK_idVehiculo(rs.getInt(8));
+                contratos.add(contrato1);
             }
         } catch (SQLException e) {
             throw new CaException("ContratoDAO", "No pudo recuperar el contrato" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
         }
         return contratos;
     }

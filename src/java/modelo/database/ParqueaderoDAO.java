@@ -34,10 +34,10 @@ public class ParqueaderoDAO {
         return parqueadero;
     }
 
-    public void setParqueadero(Parqueadero parqueadero) {
-        this.parqueadero = parqueadero;
+    public void setParqueaderos(ArrayList<Parqueadero> parqueaderos) {
+        this.parqueaderos = parqueaderos;
     }
-
+    
     public void incluirParqueadero() throws CaException {
         try {
             String strSQL = "INSERT INTO Parqueadero (k_idParqueadero, v_nfs, q_areas, n_direccion, n_localidad) VALUES(?,?,?,?,?)";
@@ -65,16 +65,19 @@ public class ParqueaderoDAO {
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             ResultSet rs = prepStmt.executeQuery();
             while (rs.next()) {
-                parqueadero.setK_idParqueadero(rs.getInt(1));
-                parqueadero.setV_nfs(rs.getInt(2));
-                parqueadero.setQ_areas(rs.getInt(3));
-                parqueadero.setN_direccion(rs.getString(4));
-                parqueadero.setN_localidad(rs.getString(5));
+                Parqueadero parqueadero1 = new Parqueadero();
+                parqueadero1.setK_idParqueadero(rs.getInt(1));
+                parqueadero1.setV_nfs(rs.getInt(2));
+                parqueadero1.setQ_areas(rs.getInt(3));
+                parqueadero1.setN_direccion(rs.getString(4));
+                parqueadero1.setN_localidad(rs.getString(5));
 
-                parqueaderos.add(parqueadero);
+                parqueaderos.add(parqueadero1);
             }
         } catch (SQLException e) {
             throw new CaException("ParqueaderoDAO", "No pudo recuperar el parqueadero" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
         }
         return parqueaderos;
     }

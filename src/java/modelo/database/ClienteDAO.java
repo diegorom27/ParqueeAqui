@@ -63,17 +63,20 @@ public class ClienteDAO {
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             ResultSet rs = prepStmt.executeQuery();
             while (rs.next()) {
-                cliente.setK_cedula(rs.getInt(1));
-                cliente.setN_primerNombre(rs.getString(2));
-                cliente.setN_primerApellido(rs.getString(3));
-                cliente.setN_segundoApellido(rs.getString(4));
-                cliente.setN_direccion(rs.getString(5));
-                cliente.setQ_telefono(rs.getInt(6));
+                Cliente cliente1 = new Cliente();
+                cliente1.setK_cedula(rs.getInt(1));
+                cliente1.setN_primerNombre(rs.getString(2));
+                cliente1.setN_primerApellido(rs.getString(3));
+                cliente1.setN_segundoApellido(rs.getString(4));
+                cliente1.setN_direccion(rs.getString(5));
+                cliente1.setQ_telefono(rs.getInt(6));
 
-                clientes.add(cliente);
+                clientes.add(cliente1);
             }
         } catch (SQLException e) {
             throw new CaException("ClienteDAO", "No pudo recuperar el cliente" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
         }
         return clientes;
     }

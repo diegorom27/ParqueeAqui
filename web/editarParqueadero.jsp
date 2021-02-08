@@ -22,11 +22,11 @@
     <LINK REL=StyleSheet HREF="assets/style.css" TYPE="text/css" MEDIA=screen>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <body>
     <header>
         <a href="index.html">
-        <img class="logo" src="assets/img/logo-removebg-preview.png" alt="">
+            <img class="logo" src="assets/img/logo-removebg-preview.png" alt="">
         </a>
         <ul>
             <li><a href="crearParqueadero.jsp">Registro de parqueadero</a></li>
@@ -50,13 +50,17 @@
                     <th>Dirección</th>
                     <th>DELETE</th>
                 </tr>
-
+                <% while (i < cl.size()) {%>
                 <tr>
-                    <td><%= cl.get(0).getK_idParqueadero()%></td>
-                    <td><%= cl.get(0).getQ_areas()%></td>
-                    <td><%= cl.get(0).getV_nfs()%></td>
+                    <td><%= cl.get(i).getK_idParqueadero()%></td>
+                    <td><%= cl.get(i).getQ_areas()%></td>
+                    <td><%= cl.get(i).getV_nfs()%></td>
+                    <td><%= cl.get(i).getN_localidad()%></td>
+                    <td><%= cl.get(i).getN_direccion()%></td>
                     <td>DELETE</td>
                 </tr>
+                <%i++;
+                    }%>
 
             </table>
         </div>

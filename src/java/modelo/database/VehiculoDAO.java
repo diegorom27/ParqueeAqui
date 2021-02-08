@@ -61,15 +61,18 @@ public class VehiculoDAO {
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             ResultSet rs = prepStmt.executeQuery();
             while (rs.next()) {
-                vehiculo.setK_idVehiculo(rs.getInt(1));
-                vehiculo.setN_marca(rs.getString(2));
-                vehiculo.setN_color(rs.getString(3));
-                vehiculo.setI_tipo(rs.getString(4));
+                Vehiculo vehiculo1 = new Vehiculo();
+                vehiculo1.setK_idVehiculo(rs.getInt(1));
+                vehiculo1.setN_marca(rs.getString(2));
+                vehiculo1.setN_color(rs.getString(3));
+                vehiculo1.setI_tipo(rs.getString(4));
 
-                vehiculos.add(vehiculo);
+                vehiculos.add(vehiculo1);
             }
         } catch (SQLException e) {
             throw new CaException("VehiculoDAO", "No pudo recuperar el vehiculo" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
         }
         return vehiculos;
     }
