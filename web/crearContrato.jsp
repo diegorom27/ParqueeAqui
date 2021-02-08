@@ -60,15 +60,17 @@ integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="ano
                 <h3>Cliente</h3>
                 <input id="buscarCliente"list="clientes" placeholder="buscar">
                 <label>Cedula:</label>
-                <input>
+                <input id="cedula" autofocus >
                 <label>Primer nombre:</label>
-                <input>
-                <label>Segundo nombre:</label>
-                <input>
+                <input id="nombre" autofocus >
+                <label>Primer apellido:</label>
+                <input id="Papellido" autofocus >
+                <label>Segundo apellido:</label>
+                <input id="sApellido" autofocus >
                 <label>Direccion:</label>
-                <input>
-                <label>Telefono:</label>
-                <input>
+                <input id="direccion" autofocus >
+                <label>telefono:</label>
+                <input id="telefono" autofocus >
             </div>
             
             <div class="crearContrato" id="creaVehiculo">
@@ -119,7 +121,7 @@ integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="ano
         </datalist> 
     </div>
 </body>
-<script type="text/javascript" src="assets/scriptCrearParq.js"></script>
+<script type="text/javascript" src="assets/scriptCrearContrato.js"></script>
 
 </html>
 
