@@ -85,6 +85,8 @@ header.sticky #elegida{
     font-size: 3.8rem;
     font-weight: 100;
     margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
     align-self:right;
     grid-column: 1 / 3 ;
     grid-row: 1;  
