@@ -3,13 +3,8 @@ var header = document.querySelector("header");
         header.classList.toggle("sticky", window.scrollY > 0);
 });
 var buscarCliente = document.getElementById("buscarCliente");
-
 var cedula = document.getElementById("cedula");
-var nombre = document.getElementById("nombre");
-var Papellido = document.getElementById("Papellido");
-var sApellido = document.getElementById("sApellido");
-var direccion = document.getElementById("direccion");
-var telefono = document.getElementById("telefono");
+
 
 var buttonCrearContrato = document.getElementById("buttonCrearContrato");
 
