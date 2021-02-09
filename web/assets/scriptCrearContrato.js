@@ -4,12 +4,16 @@ var header = document.querySelector("header");
 });
 var buscarCliente = document.getElementById("buscarCliente");
 var cedula = document.getElementById("cedula");
-
+var nombre = document.getElementById("nombre");
+var Papellido = document.getElementById("Papellido");
+var sApellido = document.getElementById("sApellido");
+var direccion = document.getElementById("direccion");
+var telefono = document.getElementById("telefono");
 
 var buttonCrearContrato = document.getElementById("buttonCrearContrato");
 
 buttonCrearContrato.addEventListener("click",function(){
-    if(buscarCliente.value=== "" & cedula.value===""){
+    if(buscarCliente.value=== "" & (cedula.value==="" || nombre.value==="" || Papellido.value==="" || sApellido.value==="" || direccion.value==="" || telefono.value==="")){
         event.preventDefault();
     }
 });

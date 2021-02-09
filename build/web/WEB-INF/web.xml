@@ -8,6 +8,10 @@
         <servlet-name>crearAreas</servlet-name>
         <servlet-class>controlador.servlet.crearAreas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crearContrato</servlet-name>
+        <servlet-class>controlador.servlet.crearContrato</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearParqueadero</servlet-name>
         <url-pattern>/crearParqueadero</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>crearAreas</servlet-name>
         <url-pattern>/crearAreas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearContrato</servlet-name>
+        <url-pattern>/crearContrato</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
