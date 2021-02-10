@@ -377,7 +377,7 @@ p{
     background-image: linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%);
     margin-left:150px;
     margin-top: 107px;
-    height: 500px;
+    height: 520px;
     width: 1000px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -412,6 +412,7 @@ p{
     grid-row: 3;
     width: 1000px;
     position: relative;
-    top: 37px;
+    top: 20px;
+    left: -3px;
 }
 /*Crear contrato */
