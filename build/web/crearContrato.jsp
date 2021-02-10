@@ -4,6 +4,8 @@
     Author     : diego
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="modelo.logica.Parqueadero"%>
 <%@page import="modelo.logica.Vehiculo"%>
 <%@page import="java.util.ArrayList"%>
@@ -11,6 +13,8 @@
 <%@page import="modelo.logica.GestorParqueadero"%>
 
 <%
+    Date date = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("dd-mm-yyyy"); 
     GestorParqueadero gestor = new GestorParqueadero();
     GestorParqueadero gestor1 = new GestorParqueadero();
     GestorParqueadero gestor2 = new GestorParqueadero();
@@ -53,50 +57,50 @@ integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="ano
             
             <div class="crearContrato" id="encontrarParqueadero">
                 <label>Parqueadero:</label>
-                <input id="buscarParqueadero" list="parqueaderos" placeholder="buscar">
+                <input name="k_idParqueadero" id="buscarParqueadero" list="parqueaderos" placeholder="buscar">
             </div>
             
             <div class="crearContrato" id="creaCliente">
                 <h3>Cliente</h3>
-                <input id="buscarCliente"list="clientes" placeholder="buscar">
+                <input name="k_cedulaSearch" id="buscarCliente"list="clientes" placeholder="buscar">
                 <label>Cedula:</label>
-                <input id="cedula" autofocus >
+                <input name="k_cedula"  id="cedula" autofocus >
                 <label>Primer nombre:</label>
-                <input id="nombre" autofocus >
+                <input name="n_primerNombre" id="nombre" autofocus >
                 <label>Primer apellido:</label>
-                <input id="Papellido" autofocus >
+                <input name="n_primerApellido" id="Papellido" autofocus >
                 <label>Segundo apellido:</label>
-                <input id="sApellido" autofocus >
+                <input name="n_segundoApellido" id="sApellido" autofocus >
                 <label>Direccion:</label>
-                <input id="direccion" autofocus >
+                <input name="n_direccion" id="direccion" autofocus >
                 <label>telefono:</label>
-                <input id="telefono" autofocus >
+                <input name="q_telefono" id="telefono" autofocus >
             </div>
             
             <div class="crearContrato" id="creaVehiculo">
                 <h3>Vehiculo</h3>
                 <label>Buscar:</label>
-                <input id="buscarVehiculo" list="vehiculos" placeholder="buscar">
+                <input name="k_idVehiculoSearch" id="buscarVehiculo" list="vehiculos" placeholder="buscar">
                 <label>ID:</label>
-                <input>
+                <input name="k_idVehiculo" id="identificadorVehiculo" autofocus>
                 <label>Marca:</label>
-                <input>
+                <input name="n_marca" id="marca" autofocus>
                 <label>Color:</label>
-                <input>
+                <input name="n_color" id="color" autofocus>
                 <label>Tipo:</label>
-                <input>
+                <input name="i_tipo" id="tipo" autofocus>
             </div >
             
             <div class="crearContrato" id="creaContrato">
                 <h3>Contrato</h3>
                 <label>ID contrato:</label>
-                <input>
+                <input name="k_idContrato" id="identificadorContrato" required>
                 <label>Costo:</label>
-                <input>
+                <input name="q_costoTotal" id="costo" required>
                 <label>Fecha de inicio:</label>
-                <input>
+                <input name="f_fechaDeInicio" id="fechaIni" value="<%=formato.format(date)%>" required>
                 <label>Fecha de finalización:</label>
-                <input>
+                <input name="f_fechaDeFinalizacion" id="fechaFin" required>
             </div >
             <button type="submit" id="buttonCrearContrato">submit</button>
         </form>
