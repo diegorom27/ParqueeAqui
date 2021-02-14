@@ -114,5 +114,11 @@ public class GestorParqueadero {
         return tarifaDAO.cargarTarifas();
     }
     
+    //vrificar datos tabla de rompimiento Parqueadero_tarifa 
+    public boolean verificar() throws CaException{
+        return parqueadero_TarifaDAO.verificar();
+    }
+    
+    
     
 }

@@ -9,6 +9,7 @@ import controlador.util.CaException;
 import controlador.util.ServiceLocator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import modelo.logica.Parqueadero;
 import modelo.logica.Tarifa;
@@ -18,9 +19,10 @@ import modelo.logica.Tarifa;
  * @author diego
  */
 public class Parqueadero_TarifaDAO {
-    
+
     Parqueadero parqueadero;
-    Tarifa tarifa; 
+    Tarifa tarifa;
+    boolean resp; 
 
     public Parqueadero_TarifaDAO() {
         parqueadero = new Parqueadero();
@@ -42,6 +44,7 @@ public class Parqueadero_TarifaDAO {
     public void setTarifa(Tarifa tarifa) {
         this.tarifa = tarifa;
     }
+
     public void incluirParqueadero_Tarifa() throws CaException {
         try {
             String strSQL = "INSERT INTO Parqueadero_Tarifa (k_idParqueadero, k_codigoTarifa) VALUES(?,?)";
@@ -58,7 +61,25 @@ public class Parqueadero_TarifaDAO {
             ServiceLocator.getInstance().liberarConexion();
         }
     }
-    
-    
-    
+
+    public boolean verificar() throws CaException {
+        try {
+            String strSQL = "SELECT EXISTS(SELECT k_idParqueadero, k_codigoTarifa FROM Parqueadero_Tarifa WHERE k_idParqueadero = ? AND Parqueadero_Tarifa = ?)";
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            prepStmt.setInt(1, parqueadero.getK_idParqueadero());
+            prepStmt.setInt(2, tarifa.getK_codigoTarifa());;
+            ResultSet rs = prepStmt.executeQuery();
+            rs.next();
+            resp = rs.getBoolean(1);
+
+        } catch (SQLException e) {
+            throw new CaException("Parqueadero_TarifaDAO", "No pudo buscar la instancia a Parqueadero_Tarifa" + e.getMessage());
+        } finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }
+
+        return resp;
+    }
+
 }

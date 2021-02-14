@@ -47,10 +47,10 @@ public class crearAreas extends HttpServlet {
         GestorParqueadero gestorT = new GestorParqueadero();
         Area a = gestor.getArea();
         Cupo c = gestorC.getCupo();
-        
+
         Parqueadero p = gestorT.getParqueadero_TarifaDAO2();
         Tarifa t = gestorT.getParqueadero_TarifaDAO1();
-        
+
         while (i < numeroDeAreas) {
             i++;
             int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero" + i));
@@ -58,19 +58,23 @@ public class crearAreas extends HttpServlet {
             int q_cuposTotales = Integer.valueOf(request.getParameter("q_cuposTotales" + i));
             int i_tipo = Integer.valueOf(request.getParameter("i_tipo" + i));
             int v_nfs = Integer.valueOf(request.getParameter("v_nfs" + i));
-            
+
             a.setK_idParqueadero(k_idParqueadero);
             a.setK_idArea(k_idArea);
             a.setQ_cuposTotales(q_cuposTotales);
             a.setQ_cuposDisponibles(q_cuposTotales);
             a.setI_tipo(i_tipo);
-            
-            t.setK_codigoTarifa(v_nfs*100 + i_tipo );
+
+            t.setK_codigoTarifa(v_nfs * 100 + i_tipo);
             p.setK_idParqueadero(k_idParqueadero);
 
             try {
                 gestor.incluirArea();
-                gestorT.incluirParqueadero_Tarifa();
+                if (gestorT.verificar()) {
+
+                } else {
+                    gestorT.incluirParqueadero_Tarifa();
+                }
 
             } catch (CaException ex) {
                 Logger.getLogger(crearAreas.class.getName()).log(Level.SEVERE, null, ex);
