@@ -57,7 +57,7 @@ public class crearAreas extends HttpServlet {
             String k_idArea = request.getParameter("k_idArea" + i);
             int q_cuposTotales = Integer.valueOf(request.getParameter("q_cuposTotales" + i));
             int i_tipo = Integer.valueOf(request.getParameter("i_tipo" + i));
-            int v_nfs = Integer.valueOf(request.getParameter("v_nfs" + i));
+            float v_nfs = Float.valueOf(request.getParameter("v_nfs" + i));
 
             a.setK_idParqueadero(k_idParqueadero);
             a.setK_idArea(k_idArea);
@@ -65,7 +65,7 @@ public class crearAreas extends HttpServlet {
             a.setQ_cuposDisponibles(q_cuposTotales);
             a.setI_tipo(i_tipo);
 
-            t.setK_codigoTarifa(v_nfs * 100 + i_tipo);
+            t.setK_codigoTarifa((int) (v_nfs * 100 + i_tipo));
             p.setK_idParqueadero(k_idParqueadero);
 
             try {

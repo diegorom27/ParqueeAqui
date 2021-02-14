@@ -64,7 +64,7 @@ public class Parqueadero_TarifaDAO {
 
     public boolean verificar() throws CaException {
         try {
-            String strSQL = "SELECT EXISTS(SELECT k_idParqueadero, k_codigoTarifa FROM Parqueadero_Tarifa WHERE k_idParqueadero = ? AND Parqueadero_Tarifa = ?)";
+            String strSQL = "SELECT EXISTS(SELECT k_idParqueadero, k_codigoTarifa FROM Parqueadero_Tarifa WHERE k_idParqueadero = ? AND k_codigoTarifa = ?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             prepStmt.setInt(1, parqueadero.getK_idParqueadero());
