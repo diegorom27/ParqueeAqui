@@ -38,6 +38,7 @@
                 <div class="contenedorA">
                     <label ><b id="idParq">ID:   <%=a.getK_idParqueadero()%></b></label><br>
                     <input type="hidden" name="k_idParqueadero<%=(i+1)%>" value="<%=a.getK_idParqueadero()%>"  placeholder="ID" autofocus required>
+                    <input type="hidden" name="v_nfs<%=(i+1)%>" value="<%=a.getV_nfs()%>"  placeholder="FNS" autofocus required>
                     <label><b>k_idArea:</b></label>
                     <input type="number" name="k_idArea<%=(i+1)%>" value="<%=(i+1)%>" placeholder="area" autofocus required>
                     <label><b>q_cuposTotales:</b></label>

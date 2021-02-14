@@ -12,7 +12,10 @@ import modelo.database.ClienteDAO;
 import modelo.database.ContratoDAO;
 import modelo.database.CupoDAO;
 import modelo.database.ParqueaderoDAO;
+import modelo.database.Parqueadero_TarifaDAO;
+import modelo.database.TarifaDAO;
 import modelo.database.VehiculoDAO;
+import modelo.logica.Tarifa;
 
 /**
  *
@@ -26,6 +29,8 @@ public class GestorParqueadero {
     private ClienteDAO clienteDAO = new ClienteDAO();
     private VehiculoDAO vehiculoDAO = new VehiculoDAO();
     private ContratoDAO contratoDAO = new ContratoDAO();
+    private TarifaDAO tarifaDAO = new TarifaDAO();
+    private Parqueadero_TarifaDAO parqueadero_TarifaDAO = new Parqueadero_TarifaDAO();
     
     public GestorParqueadero() {
         parqueaderoDAO = new ParqueaderoDAO();
@@ -34,6 +39,8 @@ public class GestorParqueadero {
         clienteDAO = new ClienteDAO();
         vehiculoDAO = new VehiculoDAO();
         contratoDAO = new ContratoDAO();
+        tarifaDAO = new TarifaDAO();
+        parqueadero_TarifaDAO = new Parqueadero_TarifaDAO();
     }
     //Incluir
     
@@ -54,6 +61,9 @@ public class GestorParqueadero {
     }
     public void incluirContrato() throws CaException {
       contratoDAO.incluirContrato();
+    }
+    public void incluirParqueadero_Tarifa() throws CaException {
+      parqueadero_TarifaDAO.incluirParqueadero_Tarifa();
     }
 
     //get
@@ -76,6 +86,15 @@ public class GestorParqueadero {
     public Contrato getContrato() {
         return contratoDAO.getContrato();
     }
+    public Tarifa getTarifaDAO() {
+        return tarifaDAO.getTarifa();
+    }
+    public Tarifa getParqueadero_TarifaDAO1() {
+        return parqueadero_TarifaDAO.getTarifa();
+    }
+    public Parqueadero getParqueadero_TarifaDAO2() {
+        return parqueadero_TarifaDAO.getParqueadero();
+    }
     
     //cargar
     
@@ -90,6 +109,9 @@ public class GestorParqueadero {
     }
     public ArrayList<Contrato> cargarContratos() throws CaException{
         return contratoDAO.cargarContratos();
+    }
+    public ArrayList<Tarifa> cargarTarifas() throws CaException{
+        return tarifaDAO.cargarTarifas();
     }
     
     

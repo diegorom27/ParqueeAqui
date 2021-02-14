@@ -3,7 +3,9 @@
     Created on : 3/02/2021, 05:57:59 PM
     Author     : diego
 --%>
-
+<%@page import="modelo.logica.Tarifa"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.logica.GestorParqueadero"%>
 <!DOCTYPE html>
 <html>
 
@@ -80,9 +82,19 @@
             <label><b>Localidad:</b></label>
             <input type="text" name="n_localidad" id="localidad" placeholder="localidad" autofocus required>
             <label><b>FNS:</b></label>
-            <input type="text" name="v_nfs" id="FNS" placeholder="FNS" autofocus required>
+            <input name="v_nfs" id="FNS" placeholder="FNS" list="FNSLista" autofocus required>
             <button type="submit" id="buttonCrearParqueadero">submit</button>
         </form>
+        <datalist id="FNSLista">
+            <option value="1">En altura o subterráneo con dos o más niveles </option>
+            <option value="0.9">Subterráneo, un solo nivel y 50 cupos o más </option>
+            <option value="0.8">Subterráneo, un solo nivel y con menos de 50 cupos</option>
+            <option value="0.7">A nivel, piso en concreto, asfalto o gravilla lavada de río
+compactada, y con 50 cupos o más </option>
+            <option value="0.6">A nivel, piso en concreto, asfalto o gravilla lavada de río
+compactada,_y_con menos de 50 cupos </option>
+            <option value="0.5">A nivel, pisos en afirmado o césped </option>
+        </datalist>
     </div>
 </body>
 <script type="text/javascript" src="assets/scriptCrearParq.js"></script>

@@ -43,8 +43,8 @@ integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="ano
             <img class="logo" src="assets/img/logo-removebg-preview.png" alt="">
         </a>
         <ul>
-            <li><a href="#">Registro de parqueadero</a></li>
-            <li><a href="#">Gestion de parqueadero</a></li>
+            <li><a href="crearParqueadero.jsp">Registro de parqueadero</a></li>
+            <li><a href="editarParqueadero.jsp">Gestion de parqueadero</a></li>
             <li><a href="#">Ingreso </a></li>
             <li><a href="#">Historial Ingresos</a></li>
             <li><a id="elegida" href="#">Vinculación contrato</a></li>
