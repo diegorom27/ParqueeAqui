@@ -10,6 +10,7 @@ var sApellido = document.getElementById("sApellido");
 var direccion = document.getElementById("direccion");
 var telefono = document.getElementById("telefono");
 
+var buscarVehiculo = document.getElementById("buscarVehiculo");
 var identificadorVehiculo = document.getElementById("identificadorVehiculo");
 var marca = document.getElementById("marca");
 var color = document.getElementById("color");
@@ -22,7 +23,7 @@ buttonCrearContrato.addEventListener("click",function(){
         event.preventDefault();
         alert("por favor no marque buscar si desea ingrear un nuevo cliente");
     }
-    if((identificadorVehiculo.value=== "" & (marca.value==="" || color.value==="" || tipo.value==="")) || (identificadorVehiculo.value!== "" & (marca.value!=="" || color.value!=="" || tipo.value!=="" )) ){
+    if((buscarVehiculo.value=== ""  & (identificadorVehiculo.value=== "" || marca.value==="" || color.value==="" || tipo.value==="")) || (buscarVehiculo.value!== ""  & (identificadorVehiculo.value!== "" || marca.value!=="" || color.value!=="" || tipo.value!=="" )) ){
         event.preventDefault();
         alert("por favor no marque buscar si desea ingrear un nuevo vehiculo");
     }

@@ -57,7 +57,7 @@ integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="ano
             
             <div class="crearContrato" id="encontrarParqueadero">
                 <label>Parqueadero:</label>
-                <input name="k_idParqueadero" id="buscarParqueadero" list="parqueaderos" placeholder="buscar">
+                <input name="k_idParqueadero" id="buscarParqueadero" list="parqueaderos" placeholder="buscar" required>
             </div>
             
             <div class="crearContrato" id="creaCliente">

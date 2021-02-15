@@ -48,14 +48,14 @@ public class crearContrato extends HttpServlet {
         
         int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero"));
         
-        int k_cedulaSearch = Integer.valueOf(request.getParameter("k_cedulaSearch"));
+        String k_cedulaSearch = (request.getParameter("k_cedulaSearch"));
         int k_cedula;
         
-        int k_idVehiculoSearch = Integer.valueOf(request.getParameter("k_idVehiculo"));
+        String k_idVehiculoSearch = (request.getParameter("k_idVehiculoSearch"));
         int k_idVehiculo;
         
 
-        if (k_cedulaSearch == 0) {
+        if (k_cedulaSearch.equals("")) {
 
             k_cedula = Integer.valueOf(request.getParameter("k_cedula"));
             String n_primerNombre = request.getParameter("n_primerNombre");
@@ -78,10 +78,10 @@ public class crearContrato extends HttpServlet {
             }
 
         } else {
-            k_cedula = k_cedulaSearch;
+            k_cedula = Integer.valueOf(k_cedulaSearch);
         }
         
-        if (k_idVehiculoSearch == 0) {
+        if (k_idVehiculoSearch.equals("")) {
 
             k_idVehiculo = Integer.valueOf(request.getParameter("k_idVehiculo"));
             String n_marca = request.getParameter("n_marca");
@@ -100,7 +100,7 @@ public class crearContrato extends HttpServlet {
             }
 
         } else {
-            k_idVehiculo = k_idVehiculoSearch;
+            k_idVehiculo = Integer.valueOf(k_idVehiculoSearch);
         }
         int k_idContrato = Integer.valueOf(request.getParameter("k_idContrato"));
         int q_costoTotal = Integer.valueOf(request.getParameter("q_costoTotal"));
@@ -114,9 +114,9 @@ public class crearContrato extends HttpServlet {
         con.setF_fechaDeFinalizacion(f_fechaDeFinalizacion);
         con.setI_estado(i_estado);
         
-        con.setK_idParqueadero(k_idContrato);
+        con.setK_idParqueadero(k_idParqueadero);
         con.setK_idVehiculo(k_idVehiculo);
-        con.setK_cedula(k_idParqueadero);
+        con.setK_cedula(k_cedula);
         
         try {
                 gestorCon.incluirContrato();
@@ -124,8 +124,7 @@ public class crearContrato extends HttpServlet {
                 Logger.getLogger(crearContrato.class.getName()).log(Level.SEVERE, null, ex);
             } 
         
-        
-
+     response.sendRedirect("index.html");   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
