@@ -38,7 +38,7 @@ public class ContratoDAO {
     }
     public void incluirContrato() throws CaException {
         try {
-            String strSQL = "INSERT INTO contrato (k_idContrato, q_costoTotal, f_fechaDeInicio, f_fechaDeFinalizacion, i_estado, k_idParqueadero, k_cedula, k_idVehiculo) VALUES(?,?,?,?,?,?,?,?)";
+            String strSQL = "INSERT INTO Contrato (k_idContrato, q_costoTotal, f_fechaDeInicio, f_fechaDeFinalizacion, i_estado, k_idParqueadero, k_cedula, k_idVehiculo) VALUES(?,?,?,?,?,?,?,?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             prepStmt.setInt(1, contrato.getK_idContrato());
@@ -48,9 +48,7 @@ public class ContratoDAO {
             prepStmt.setString(5, contrato.getI_estado());
             prepStmt.setInt(6, contrato.getK_idParqueadero());
             prepStmt.setInt(7, contrato.getK_cedula());
-            prepStmt.setInt(8, contrato.getK_idVehiculo());
-            
-            
+            prepStmt.setInt(8, contrato.getK_idVehiculo());   
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
