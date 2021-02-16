@@ -88,7 +88,7 @@ integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="ano
                 <label>Color:</label>
                 <input name="n_color" id="color" autofocus>
                 <label>Tipo:</label>
-                <input name="i_tipo" id="tipo" autofocus>
+                <input name="i_tipo" id="tipo" type="number" step="1" min="1" max="6" autofocus>
             </div >
             
             <div class="crearContrato" id="creaContrato">

@@ -82,7 +82,7 @@
             <label><b>Localidad:</b></label>
             <input type="text" name="n_localidad" id="localidad" placeholder="localidad" autofocus required>
             <label><b>FNS:</b></label>
-            <input name="v_nfs" id="FNS" placeholder="FNS" list="FNSLista" autofocus required>
+            <input name="v_nfs" id="FNS" placeholder="FNS" type="number" min="0.5" max="1" step="0.1" list="FNSLista" autofocus required>
             <button type="submit" id="buttonCrearParqueadero">submit</button>
         </form>
         <datalist id="FNSLista">
