@@ -14,7 +14,7 @@
 
 <%
     Date date = new Date();
-    SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy"); 
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd"); 
     GestorParqueadero gestor = new GestorParqueadero();
     GestorParqueadero gestor1 = new GestorParqueadero();
     GestorParqueadero gestor2 = new GestorParqueadero();

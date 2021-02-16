@@ -5,6 +5,7 @@
  */
 package modelo.database;
 
+import java.sql.Date;  
 import controlador.util.CaException;
 import controlador.util.ServiceLocator;
 import java.sql.Connection;
@@ -23,6 +24,7 @@ public class ContratoDAO {
     
     Contrato contrato;
     ArrayList<Contrato> contratos;
+    
 
     public ContratoDAO() {
         contrato = new Contrato();
@@ -38,13 +40,13 @@ public class ContratoDAO {
     }
     public void incluirContrato() throws CaException {
         try {
-            String strSQL = "INSERT INTO Contrato (k_idContrato, q_costoTotal, f_fechaDeInicio, f_fechaDeFinalizacion, i_estado, k_idParqueadero, k_cedula, k_idVehiculo) VALUES(?,?,?,?,?,?,?,?)";
+            String strSQL = "INSERT INTO Contrato(k_idContrato, q_costoTotal, f_fechaDeInicio, f_fechaDeFinalizacion, i_estado, k_idParqueadero, k_cedula, k_idVehiculo)VALUES(?,?,?,?,?,?,?,?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             prepStmt.setInt(1, contrato.getK_idContrato());
             prepStmt.setInt(2, contrato.getQ_costoTotal());
-            prepStmt.setString(3, contrato.getF_fechaDeInicio());
-            prepStmt.setString(4, contrato.getF_fechaDeFinalizacion());
+            prepStmt.setDate(3, Date.valueOf(contrato.getF_fechaDeInicio()));
+            prepStmt.setDate(4, Date.valueOf(contrato.getF_fechaDeFinalizacion()));
             prepStmt.setString(5, contrato.getI_estado());
             prepStmt.setInt(6, contrato.getK_idParqueadero());
             prepStmt.setInt(7, contrato.getK_cedula());
