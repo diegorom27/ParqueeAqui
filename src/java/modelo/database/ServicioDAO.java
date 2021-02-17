@@ -23,7 +23,7 @@ public class ServicioDAO {
     
     private Servicio servicio;
     private ArrayList<Servicio> servicios;
-
+    
     public ServicioDAO() {
         servicio = new Servicio();
         servicios = new ArrayList();
@@ -37,7 +37,51 @@ public class ServicioDAO {
         this.servicio = servicio;
     }
     
-    public void entrada() throws CaException {
+    public String hallarCupo(String k_idVehiculo) throws CaException{
+        String tipo;
+        try {
+            String strSQL = "SELECT i_tipo from vehiculo WHERE k_idvehiculo = " + k_idVehiculo;
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            ResultSet rs = prepStmt.executeQuery();
+            tipo = rs.getString(1);
+        } catch (SQLException e) {
+            throw new CaException("ServicioDAO", "No pudo recuperar el servicio" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }
+        
+        return tipo;
+    }
+    
+    public boolean verificarCupo(String k_idVehiculo) throws CaException{
+        String tipo;
+        boolean cupo = false;
+        tipo=this.hallarCupo(k_idVehiculo);
+        
+        try {
+            String strSQL = "SELECT q_cuposdisponibles from area WHERE i_tipo = " + tipo;
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            ResultSet rs = prepStmt.executeQuery();
+            while (rs.next()) {
+                int cupos;
+                cupos = rs.getInt(1);
+                if(cupos > 0){
+                   cupo=true;
+                   break;
+                }
+            }
+        } catch (SQLException e) {
+            throw new CaException("ServicioDAO", "No pudo recuperar el servicio" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }
+        
+        return cupo; 
+    }
+    
+    public void incluirServicio() throws CaException {
         try {
             String strSQL = "INSERT INTO servicio (k_idServicio, f_fycEntrada, "
                             + "f_fycSalida, q_valorAPagar k_idVehiculo) VALUES(?,?,?,?,?)";
@@ -57,6 +101,7 @@ public class ServicioDAO {
             ServiceLocator.getInstance().liberarConexion();
         }
     }
+
     
     public void salida() throws CaException {
         try {

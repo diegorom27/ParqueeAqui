@@ -13,6 +13,7 @@ import modelo.database.ContratoDAO;
 import modelo.database.CupoDAO;
 import modelo.database.ParqueaderoDAO;
 import modelo.database.Parqueadero_TarifaDAO;
+import modelo.database.ServicioDAO;
 import modelo.database.TarifaDAO;
 import modelo.database.VehiculoDAO;
 import modelo.logica.Tarifa;
@@ -31,7 +32,8 @@ public class GestorParqueadero {
     private ContratoDAO contratoDAO = new ContratoDAO();
     private TarifaDAO tarifaDAO = new TarifaDAO();
     private Parqueadero_TarifaDAO parqueadero_TarifaDAO = new Parqueadero_TarifaDAO();
-    
+    private ServicioDAO servicioDAO = new ServicioDAO();
+            
     public GestorParqueadero() {
         parqueaderoDAO = new ParqueaderoDAO();
         areaDAO = new AreaDAO();
@@ -41,6 +43,7 @@ public class GestorParqueadero {
         contratoDAO = new ContratoDAO();
         tarifaDAO = new TarifaDAO();
         parqueadero_TarifaDAO = new Parqueadero_TarifaDAO();
+        servicioDAO = new ServicioDAO();
     }
     //Incluir
     
@@ -64,6 +67,10 @@ public class GestorParqueadero {
     }
     public void incluirParqueadero_Tarifa() throws CaException {
       parqueadero_TarifaDAO.incluirParqueadero_Tarifa();
+    }
+    
+    public void incluirServicio() throws CaException {
+        servicioDAO.incluirServicio();
     }
 
     //get
@@ -95,6 +102,9 @@ public class GestorParqueadero {
     public Parqueadero getParqueadero_TarifaDAO2() {
         return parqueadero_TarifaDAO.getParqueadero();
     }
+    public Servicio getServicio() {
+        return servicioDAO.getServicio();
+    }
     
     //cargar
     
@@ -109,6 +119,9 @@ public class GestorParqueadero {
     }
     public ArrayList<Contrato> cargarContratos() throws CaException{
         return contratoDAO.cargarContratos();
+    }
+    public ArrayList<Servicio> cargarServicios() throws CaException{
+        return servicioDAO.cargarServicios();
     }
     public ArrayList<Tarifa> cargarTarifas() throws CaException{
         return tarifaDAO.cargarTarifas();

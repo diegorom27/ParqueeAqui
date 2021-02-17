@@ -540,7 +540,7 @@ INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(72, 77,'camp
 --campero  fns= 0.6--
 INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(62, 66,'campero fns= 6');
 --campero  fns= 0.5--
-INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(51, 55,'carro fns= 5');
+INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(52, 55,'carro fns= 5');
 
 --camioneta fns= 1--
 INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(103, 110,'camioneta fns= 1');
@@ -577,9 +577,9 @@ INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(85, 62,'moto
 --moto  fns= 0.7--
 INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(75, 54,'moto fns= 7');
 --moto  fns= 0.6--
-INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(66, 46,'moto fns= 6');
+INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(65, 46,'moto fns= 6');
 --moto  fns= 0.5--
-INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(56, 39,'moto fns= 5');
+INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(55, 39,'moto fns= 5');
 
 --ciclas fns= 1--
 INSERT INTO tarifa(k_codigotarifa, q_precioporminuto,i_tipo) VALUES(106, 10,'ciclas fns= 1');
