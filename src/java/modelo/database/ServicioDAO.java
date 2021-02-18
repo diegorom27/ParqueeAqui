@@ -228,7 +228,7 @@ public class ServicioDAO {
         String k_idcupo = null;
         
         try {
-            String strSQL = "SELECT k_idcupo from cupo WHERE k_idarea = " + k_idarea + " AND i_estado = ?;";
+            String strSQL = "SELECT k_idcupo from cupo WHERE k_idarea = " + k_idarea + " AND i_estado = v;";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             ResultSet rs = prepStmt.executeQuery();
@@ -247,7 +247,7 @@ public class ServicioDAO {
     
     private void actualizarDatosCupo(String k_idarea, String k_idparqueadero, String k_idcupo) throws CaException{
         try {
-            String strSQL = "UPDATE cupo SET i_estado = ? WHERE k_idarea = " + 
+            String strSQL = "UPDATE cupo SET i_estado = o WHERE k_idarea = " + 
                             k_idarea + " AND k_idparqueadero = " + k_idparqueadero 
                             + " AND k_idcupo = " + k_idcupo + ";";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
@@ -282,6 +282,7 @@ public class ServicioDAO {
         String k_idarea = this.hallarArea(i_tipo);
         String k_idcupo = this.hallarCupoDisponible(k_idarea);
         String k_idparqueadero = this.hallarParqueadero(k_idarea);
+        
         this.actualizarDatosCupo(k_idarea, k_idparqueadero, k_idcupo);
         this.asignarDatosCupo_servicio(k_idservicio, k_idcupo);
     }
