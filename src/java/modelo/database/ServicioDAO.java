@@ -43,8 +43,10 @@ public class ServicioDAO {
         this.servicio = servicio;
     }
     
-    //Metodos publicos
+    //METODOS PUBLICOS
     
+    /* Incluye un servicio (entrada de vehículo a la base de datos), solo añade
+       solo añade los valores id, fech entrada, id vehículo*/
     public void incluirServicio() throws CaException {
         try {
             String strSQL = "INSERT INTO servicio (k_idservicio, f_fycentrada, "
@@ -67,10 +69,11 @@ public class ServicioDAO {
         this.asignarCupo(String.valueOf(servicio.getK_idVehiculo()), String.valueOf(servicio.getK_idServicio()));
     }
     
-    public void salida() throws CaException {
+    // Se actualiza la tabla de servicios con los valores que faltaban
+    public void salida(String q_valorapagar) throws CaException {
         try {
-            String strSQL = "UPDATE servicio SET f_fycsalida=? AND q_valorapagar=? "
-                            + "WHERE k_idservicio =?";
+            String strSQL = "UPDATE servicio SET f_fycsalida=? AND " + q_valorapagar 
+                            + " WHERE k_idservicio =?";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             prepStmt.setString(1, servicio.getF_fycSalida());
@@ -86,6 +89,7 @@ public class ServicioDAO {
         }
     }
     
+    // crea un array con todos los servicios en bd
     public ArrayList<Servicio> cargarServicios() throws CaException {
         try {
             String strSQL = "SELECT k_idservicio, f_fycentrada, f_fycsalida, "
@@ -111,6 +115,7 @@ public class ServicioDAO {
         return servicios;
     }
     
+    // verifica si existe cupo para un vehículo ya registrado en el sistema
     public boolean verificarCupoVehiculoRegistrado(String k_idvehiculo) throws CaException{
         String i_tipo;
         boolean cupo = false;
@@ -138,6 +143,7 @@ public class ServicioDAO {
         return cupo; 
     }
     
+    // verifica si existen cupos para un vehículo que no esta registrado en bd
     public boolean verificarCupoVehiculoNuevo(String i_tipo) throws CaException{
         boolean cupo = false;
         try {
@@ -161,9 +167,33 @@ public class ServicioDAO {
         
         return cupo;
     }
-
-    //Metodos privados
     
+    // Retorna un bool dependiendo si el vehículo tiene contrato o no
+    public boolean verificarContrato(String k_idvehiculo) throws CaException{
+        boolean contrato = false;
+        try {
+            String strSQL = "SELECT i_estado from contrato WHERE k_idvehiculo = " + k_idvehiculo;
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            ResultSet rs = prepStmt.executeQuery();
+            String estado = rs.getString(1);
+            if(estado == "v"){
+                contrato = true;
+            }
+        } catch (SQLException e) {
+            throw new CaException("ServicioDAO", "No pudo recuperar el servicio" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }
+        
+        return contrato;
+    }
+
+    //METODOS PRIVADOS
+    
+    // Metodos de entrada de vehículo (*)
+    
+    //* Retorna el tipo de vehículo según la id del vehículo
     private String hallarTipo(String k_idvehiculo) throws CaException{
         String i_tipo;
         try {
@@ -181,6 +211,7 @@ public class ServicioDAO {
         return i_tipo;
     }   
      
+    //* Retorna el área seguún el tipo de vehículo 
     private String hallarArea(String i_tipo) throws CaException{
         String k_idarea = null;
         
@@ -203,6 +234,7 @@ public class ServicioDAO {
         return k_idarea;
     }
     
+    //* Retorna el parqueadero según el id de el id área
     private String hallarParqueadero(String k_idarea) throws CaException{
         String k_idparqueadero = null;
         
@@ -224,6 +256,27 @@ public class ServicioDAO {
         return k_idparqueadero;
     }
     
+    // Retorna el cupo según la id servicio
+    private String hallarCupo(String k_idservicio) throws CaException{
+        String k_idcupo;
+        
+        try {
+            String strSQL = "SELECT k_idcupo from cupo_servicio WHERE k_idservicio =  " 
+                            + k_idservicio + ";";
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            ResultSet rs = prepStmt.executeQuery();
+            k_idcupo = String.valueOf(rs.getInt(1));
+        } catch (SQLException e) {
+            throw new CaException("ServicioDAO", "No pudo recuperar el servicio" + e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }
+        
+        return k_idcupo;
+    }
+    
+    //* retorna un cupo disponible en un área
     private String hallarCupoDisponible(String k_idarea) throws CaException{
         String k_idcupo = null;
         
@@ -245,6 +298,7 @@ public class ServicioDAO {
         return k_idcupo;
     }
     
+    //* Actualiza los datos de la tabla cupo en bd cuando una vehículo ingresa
     private void actualizarDatosCupo(String k_idarea, String k_idparqueadero, String k_idcupo) throws CaException{
         try {
             String strSQL = "UPDATE cupo SET i_estado = o WHERE k_idarea = " + 
@@ -262,6 +316,7 @@ public class ServicioDAO {
         }
     }
     
+    //* Inserta los datos necesarios a la tabla cupo_servicio cuando un vehículo ingresa
     private void asignarDatosCupo_servicio(String k_idservicio, String k_idcupo) throws CaException{
         try {
             String strSQL = "INSERT INTO cupo_servicio (k_idservicio, k_idcupo) "
@@ -277,6 +332,8 @@ public class ServicioDAO {
             ServiceLocator.getInstance().liberarConexion();
         }
     }
+    
+    //* Asigna un cupo a un vehículo que esta por ingresar
     private void asignarCupo(String k_idvehiculo, String k_idservicio) throws CaException{
         String i_tipo = this.hallarTipo(k_idvehiculo);
         String k_idarea = this.hallarArea(i_tipo);
@@ -287,35 +344,20 @@ public class ServicioDAO {
         this.asignarDatosCupo_servicio(k_idservicio, k_idcupo);
     }
     
-    /*
-    private void rellenarTablas(int k_idServicio, int k_idVehiculo) throws CaException {
-        try {
-            String strSQL = "INSERT INTO cupo_sevicio (k_idservicio, k_idcupo)"
-                            + " VALUES(" + k_idServicio + ",?)";
-            Connection conexion = ServiceLocator.getInstance().tomarConexion();
-            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setInt(1, servicio.getK_idServicio());
-            prepStmt.setString(2, servicio.getF_fycEntrada());
-            prepStmt.setString(3, "01/01/0001");
-            prepStmt.setInt(4, 0);
-            prepStmt.setInt(5, servicio.getK_idVehiculo());
-            prepStmt.executeUpdate();
-            prepStmt.close();
-            ServiceLocator.getInstance().commit();
-        } catch (SQLException e) {
-            throw new CaException("ServicioDAO", "No pudo crear el servicio" + e.getMessage());
-        } finally {
-            ServiceLocator.getInstance().liberarConexion();
-        }
-    }
-    */
+    // Metodos salida de vehículo (-)
     
-    /*
-    public void actualizarCupo(String servicio) throws CaException {
-        if(servicio.equals("entrada")){
-            try {
-            String strSQL = "UPDATE servicio SET f_fycSalida=? AND q_valorAPagar=? "
-                            + "WHERE k_idServicio =?";
+    //actualiza los datos de las tablas cuando sale un vehículo
+    private void actualizarDatosSalida(String k_idvehiculo, String k_idservicio) throws CaException{
+        this.actualizaCupoSalida(k_idservicio);
+    }
+    
+    //Actualiza la tabla cupo cuando un vehículo sale
+    private void actualizaCupoSalida(String k_idservicio) throws CaException{
+        String k_idcupo = this.hallarCupo(k_idservicio);
+        
+        try {
+            String strSQL = "UPDATE cupo SET i_estado = v WHERE k_idcupo = " 
+                            + k_idcupo + ";";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             prepStmt.setString(1, servicio.getF_fycSalida());
@@ -328,9 +370,7 @@ public class ServicioDAO {
             throw new CaException("ServicioDAO", "No pudo actualizar el servicio" + e.getMessage());
         } finally {
             ServiceLocator.getInstance().liberarConexion();
-        }   
-        }    
+        }
     }
-    */
-    
+     
 }
