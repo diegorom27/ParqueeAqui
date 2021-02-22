@@ -12,6 +12,10 @@
         <servlet-name>crearContrato</servlet-name>
         <servlet-class>controlador.servlet.crearContrato</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crearServicio</servlet-name>
+        <servlet-class>controlador.servlet.crearServicio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearParqueadero</servlet-name>
         <url-pattern>/crearParqueadero</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>crearContrato</servlet-name>
         <url-pattern>/crearContrato</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearServicio</servlet-name>
+        <url-pattern>/crearServicio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
