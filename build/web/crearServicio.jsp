@@ -39,9 +39,9 @@
                 <img class="logo" src="assets/img/logo-removebg-preview.png" alt="">
             </a>
             <ul>
-                <li><a id="elegida" href="#">Registro de parqueadero</a></li>
+                <li><a href="#">Registro de parqueadero</a></li>
                 <li><a href="#">Gestion de parqueadero</a></li>
-                <li><a href="#">Ingreso </a></li>
+                <li><a id="elegida" href="#">Ingreso </a></li>
                 <li><a href="#">Historial Ingresos</a></li>
                 <li><a href="#">Vinculación contrato</a></li>
                 <li><a href="#">Gestión contratos</a></li>
@@ -49,7 +49,7 @@
             </ul>
         </header>
         <div id="contenedorContrato">
-        <form id="creacionContrato" action="CrearServicio" method="post">
+        <form id="creacionContrato" action="crearServicio" method="post">
             <div class="crearContrato" id="encontrarParqueadero">
                 <label>Parqueadero:</label>
                 <input name="k_idParqueadero" id="buscarParqueadero" list="parqueaderos" placeholder="buscar" required>

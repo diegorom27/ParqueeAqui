@@ -127,11 +127,18 @@ public class GestorParqueadero {
         return tarifaDAO.cargarTarifas();
     }
     
-    //vrificar datos tabla de rompimiento Parqueadero_tarifa 
+    //verificar datos tabla de rompimiento Parqueadero_tarifa 
     public boolean verificar() throws CaException{
         return parqueadero_TarifaDAO.verificar();
     }
     
+    //verificar si existen cupos para el vehículo
+    public boolean verificarCupos(String k_idvehiculo, String k_idparqueadero)throws CaException{
+        return servicioDAO.verificarCupo(k_idvehiculo, k_idparqueadero);
+    }
     
-    
+    //verificar si el vehículo tiene contrato
+    public boolean verificarContrato(String k_idvehiculo)throws CaException{
+        return servicioDAO.verificarContrato(k_idvehiculo);
+    }
 }

@@ -5,12 +5,18 @@
  */
 package controlador.servlet;
 
+import controlador.util.CaException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.logica.GestorParqueadero;
+import modelo.logica.Servicio;
+import modelo.logica.Vehiculo;
 
 /**
  *
@@ -31,6 +37,62 @@ public class crearServicio extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        GestorParqueadero gestorV = new GestorParqueadero();
+        GestorParqueadero gestorS = new GestorParqueadero();
+        
+        Vehiculo vehiculo = gestorV.getVehiculo();
+        Servicio servicio = gestorS.getServicio();
+        
+        int k_idParqueadero = Integer.valueOf(request.getParameter("k_idParqueadero"));
+        
+        String k_idVehiculoSearch = (request.getParameter("k_idVehiculoSearch"));
+        int k_idVehiculo;
+        
+        if (k_idVehiculoSearch.equals("")) {
+
+            k_idVehiculo = Integer.valueOf(request.getParameter("k_idVehiculo"));
+            String n_marca = request.getParameter("n_marca");
+            String n_color = request.getParameter("n_color");
+            String i_tipo = request.getParameter("i_tipo");
+
+            vehiculo.setK_idVehiculo(k_idVehiculo);
+            vehiculo.setN_marca(n_marca);
+            vehiculo.setN_color(n_color);
+            vehiculo.setI_tipo(i_tipo);
+
+            try {
+                gestorV.incluirVehiculo();
+            } catch (CaException ex) {
+                Logger.getLogger(crearContrato.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            k_idVehiculo = Integer.valueOf(k_idVehiculoSearch);
+        }
+        
+        boolean cupos = false;
+        try {
+            cupos = gestorS.verificarCupos(String.valueOf(k_idVehiculo), String.valueOf(k_idParqueadero));
+        } catch (CaException ex) {
+            Logger.getLogger(crearServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        servicio.setF_fycEntrada(request.getParameter("f_fycentrada"));
+        servicio.setK_idVehiculo(Integer.valueOf(request.getParameter("k_idVehiculo")));
+        
+        if(cupos == false){
+            System.out.println ("1");
+        }
+        else{
+            try {
+                gestorS.incluirServicio();    
+            } catch (CaException ex) {
+                Logger.getLogger(crearParqueadero.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println ("2");
+        }
+        
+        response.sendRedirect("index.html");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

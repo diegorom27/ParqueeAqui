@@ -49,15 +49,14 @@ public class ServicioDAO {
        solo añade los valores id, fech entrada, id vehículo*/
     public void incluirServicio() throws CaException {
         try {
-            String strSQL = "INSERT INTO servicio (k_idservicio, f_fycentrada, "
-                            + "f_fycsalida, q_valorapagar k_idvehiculo) VALUES(?,?,?,?,?)";
+            String strSQL = "INSERT INTO servicio (f_fycentrada, f_fycsalida, "
+                            + "q_valorapagar k_idvehiculo) VALUES(?,?,?,?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setInt(1, servicio.getK_idServicio());
-            prepStmt.setString(2, servicio.getF_fycEntrada());
-            prepStmt.setString(3, "01/01/0001");
-            prepStmt.setInt(4, 0);
-            prepStmt.setInt(5, servicio.getK_idVehiculo());
+            prepStmt.setString(1, servicio.getF_fycEntrada());
+            prepStmt.setString(2, "01/01/0001");
+            prepStmt.setInt(3, 0);
+            prepStmt.setInt(4, servicio.getK_idVehiculo());
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
@@ -116,13 +115,14 @@ public class ServicioDAO {
     }
     
     // verifica si existe cupo para un vehículo ya registrado en el sistema
-    public boolean verificarCupoVehiculoRegistrado(String k_idvehiculo) throws CaException{
+    public boolean verificarCupo(String k_idvehiculo, String k_idparqueadero) throws CaException{
         String i_tipo;
         boolean cupo = false;
         i_tipo=this.hallarTipo(k_idvehiculo);
         
         try {
-            String strSQL = "SELECT q_cuposdisponibles from area WHERE i_tipo = " + i_tipo;
+            String strSQL = "SELECT q_cuposdisponibles from area WHERE i_tipo = " 
+                            + i_tipo + " AND k_idparqueadero = " + k_idparqueadero;
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             ResultSet rs = prepStmt.executeQuery();
@@ -141,31 +141,6 @@ public class ServicioDAO {
         }
         
         return cupo; 
-    }
-    
-    // verifica si existen cupos para un vehículo que no esta registrado en bd
-    public boolean verificarCupoVehiculoNuevo(String i_tipo) throws CaException{
-        boolean cupo = false;
-        try {
-            String strSQL = "SELECT q_cuposdisponibles from area WHERE i_tipo = " + i_tipo;
-            Connection conexion = ServiceLocator.getInstance().tomarConexion();
-            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            ResultSet rs = prepStmt.executeQuery();
-            while (rs.next()) {
-                int cupos;
-                cupos = rs.getInt(1);
-                if(cupos > 0){
-                   cupo=true;
-                   break;
-                }
-            }
-        } catch (SQLException e) {
-            throw new CaException("ServicioDAO", "No pudo recuperar el servicio" + e.getMessage());
-        }finally {
-            ServiceLocator.getInstance().liberarConexion();
-        }
-        
-        return cupo;
     }
     
     // Retorna un bool dependiendo si el vehículo tiene contrato o no
