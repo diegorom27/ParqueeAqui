@@ -49,7 +49,5 @@ public class AreaDAO {
         } finally {
             ServiceLocator.getInstance().liberarConexion();
         }
-    }
-   
-    
+    } 
 }
