@@ -11,7 +11,7 @@
 <%@page import="modelo.logica.GestorParqueadero"%>
 <%
     Date date = new Date();
-    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
     GestorParqueadero gestor1 = new GestorParqueadero();
     GestorParqueadero gestor2 = new GestorParqueadero();
     
@@ -66,6 +66,9 @@
                 <input name="n_color" id="color" autofocus>
                 <label>Tipo:</label>
                 <input name="i_tipo" id="tipo" type="number" step="1" min="1" max="6" autofocus>
+                <h3>Servicio</h3>
+                <label>ID:</label>
+                <input name="k_idServicio" id="identificadorServicio" autofocus>
             </div >
             <div class="crearContrato" id="creaContrato">
                 <%--  <h3>Servicio</h3>

@@ -16,6 +16,10 @@
         <servlet-name>crearServicio</servlet-name>
         <servlet-class>controlador.servlet.crearServicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>acabarServicio</servlet-name>
+        <servlet-class>controlador.servlet.acabarServicio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearParqueadero</servlet-name>
         <url-pattern>/crearParqueadero</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>crearServicio</servlet-name>
         <url-pattern>/crearServicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>acabarServicio</servlet-name>
+        <url-pattern>/acabarServicio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

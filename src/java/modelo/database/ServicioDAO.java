@@ -49,14 +49,15 @@ public class ServicioDAO {
        solo añade los valores id, fech entrada, id vehículo*/
     public void incluirServicio() throws CaException {
         try {
-            String strSQL = "INSERT INTO servicio (f_fycentrada, f_fycsalida, "
-                            + "q_valorapagar k_idvehiculo) VALUES(?,?,?,?)";
+            String strSQL = "INSERT INTO servicio(f_fycentrada, f_fycsalida, "
+                            + "q_valorapagar, k_idvehiculo, k_idservicio) VALUES(?,?,?,?,?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setString(1, servicio.getF_fycEntrada());
-            prepStmt.setString(2, "01/01/0001");
-            prepStmt.setInt(3, 0);
-            prepStmt.setInt(4, servicio.getK_idVehiculo());
+            prepStmt.setTimestamp(1, servicio.getF_fycentrada());
+            prepStmt.setTimestamp(2, servicio.getF_fycsalida());
+            prepStmt.setInt(3, servicio.getQ_valorapagar());
+            prepStmt.setInt(4, servicio.getK_idvehiculo());
+            prepStmt.setInt(5, servicio.getK_idservicio());
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
@@ -65,7 +66,7 @@ public class ServicioDAO {
         } finally {
             ServiceLocator.getInstance().liberarConexion();
         }
-        this.asignarCupo(String.valueOf(servicio.getK_idVehiculo()), String.valueOf(servicio.getK_idServicio()));
+        this.asignarCupo(String.valueOf(servicio.getK_idvehiculo()), String.valueOf(servicio.getK_idservicio()));
     }
     
     // Se actualiza la tabla de servicios con los valores que faltaban
@@ -75,9 +76,9 @@ public class ServicioDAO {
                             + " WHERE k_idservicio =?";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setString(1, servicio.getF_fycSalida());
-            prepStmt.setInt(2, servicio.getQ_valorAPagar());
-            prepStmt.setInt(3, servicio.getK_idServicio());
+            prepStmt.setTimestamp(1, servicio.getF_fycsalida());
+            prepStmt.setInt(2, servicio.getQ_valorapagar());
+            prepStmt.setInt(3, servicio.getK_idservicio());
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
@@ -98,11 +99,11 @@ public class ServicioDAO {
             ResultSet rs = prepStmt.executeQuery();
             while (rs.next()) {
                 Servicio servicio1 = new Servicio();
-                servicio1.setK_idServicio(rs.getInt(1));
-                servicio1.setF_fycEntrada(rs.getString(2));
-                servicio1.setF_fycSalida(rs.getString(3));
-                servicio1.setQ_valorAPagar(rs.getInt(4));
-                servicio1.setK_idVehiculo(rs.getInt(5));
+                servicio1.setK_idservicio(rs.getInt(1));
+                servicio1.setF_fycentrada(rs.getTimestamp(2));
+                servicio1.setF_fycsalida(rs.getTimestamp(3));
+                servicio1.setQ_valorapagar(rs.getInt(4));
+                servicio1.setK_idvehiculo(rs.getInt(5));
 
                 servicios.add(servicio1);
             }
@@ -172,7 +173,7 @@ public class ServicioDAO {
     private String hallarTipo(String k_idvehiculo) throws CaException{
         String i_tipo;
         try {
-            String strSQL = "SELECT i_tipo from vehiculo WHERE k_idvehiculo = " + k_idvehiculo;
+            String strSQL = "SELECT i_tipo from vehiculo WHERE k_idvehiculo = " + k_idvehiculo + ";";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             ResultSet rs = prepStmt.executeQuery();
@@ -335,9 +336,9 @@ public class ServicioDAO {
                             + k_idcupo + ";";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setString(1, servicio.getF_fycSalida());
-            prepStmt.setInt(2, servicio.getQ_valorAPagar());
-            prepStmt.setInt(3, servicio.getK_idServicio());
+            prepStmt.setTimestamp(1, servicio.getF_fycsalida());
+            prepStmt.setInt(2, servicio.getQ_valorapagar());
+            prepStmt.setInt(3, servicio.getK_idservicio());
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();

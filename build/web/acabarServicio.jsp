@@ -1,8 +1,9 @@
 <%-- 
-    Document   : CrearServicio
-    Created on : 20/02/2021, 01:53:20 PM
-    Author     : diego
+    Document   : acabarServicio
+    Created on : 23/02/2021, 12:55:28 AM
+    Author     : lenovo
 --%>
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="modelo.logica.Vehiculo"%>
 <%@page import="java.util.Date"%>
@@ -41,7 +42,8 @@
             <ul>
                 <li><a href="#">Registro de parqueadero</a></li>
                 <li><a href="#">Gestion de parqueadero</a></li>
-                <li><a id="elegida" href="#">Ingreso </a></li>
+                <li><a href="#">Ingreso </a></li>
+                <li><a id="elegida" href="#">Salida</a></li>
                 <li><a href="#">Historial Ingresos</a></li>
                 <li><a href="#">Vinculación contrato</a></li>
                 <li><a href="#">Gestión contratos</a></li>
@@ -49,32 +51,20 @@
             </ul>
         </header>
         <div id="contenedorContrato">
-        <form id="creacionContrato" action="crearServicio" method="post">
+        <form id="creacionContrato" action="acabarServicio" method="post">
             <div class="crearContrato" id="encontrarParqueadero">
                 <label>Parqueadero:</label>
                 <input name="k_idParqueadero" id="buscarParqueadero" list="parqueaderos" placeholder="buscar" required>
             </div> 
             <div class="crearContrato" id="creaVehiculo">
-                <h3>Vehiculo</h3>
+                <h3>Servicio</h3>
                 <label>Buscar:</label>
                 <input name="k_idVehiculoSearch" id="buscarVehiculo" list="vehiculos" placeholder="buscar">
-                <label>ID:</label>
-                <input name="k_idVehiculo" id="identificadorVehiculo" autofocus>
-                <label>Marca:</label>
-                <input name="n_marca" id="marca" autofocus>
-                <label>Color:</label>
-                <input name="n_color" id="color" autofocus>
-                <label>Tipo:</label>
-                <input name="i_tipo" id="tipo" type="number" step="1" min="1" max="6" autofocus>
-                <h3>Servicio</h3>
-                <label>ID:</label>
-                <input name="k_idServicio" id="identificadorServicio" autofocus>
+                <label>Fecha de salida:</label>
+                <input name="f_fycsalida" id="f_fycsalida" value="<%=formato.format(date)%>" required>
+                <label>Valor a pagar:</label>
+                <input name="q_valorapagar" id="q_valorapagar" required>
             </div >
-            <div class="crearContrato" id="creaContrato">
-                <%--  <h3>Servicio</h3>
-                <label>Fecha de entrada:</label>--%>
-                <input name="f_fycentrada" id="f_fycentrada" value="<%=formato.format(date)%>" hidden required>
-            </div>
             <button type="submit" id="buttonCrearServicio">submit</button>
         </form>
         
@@ -92,6 +82,7 @@
         </datalist> 
     </div>
     </body>
-    <script type="text/javascript" src="assets/scriptCrearServicio.js"></script>
+    <script type="text/javascript" src="assets/scriptAcabarServicio.js"></script>
 
 </html>
+

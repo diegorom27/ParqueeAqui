@@ -107,7 +107,7 @@ CREATE TABLE Parqueadero_Tarifa
 
 CREATE TABLE Servicio
 (
-	--k_idServicio integer NOT NULL,    -- identificador del servicio
+	k_idServicio integer NOT NULL,    -- identificador del servicio
 	f_FYCEntrada timestamp without time zone NOT NULL,    -- Fecha y hora de entrada de un vehiculo.
 	f_FYCSalida timestamp without time zone NULL,    -- Fecha y hora de salida de un vehiculo.
 	q_valorAPagar integer NOT NULL,    -- valor a pagar por la duración del servicio.
@@ -231,10 +231,10 @@ CREATE INDEX IXFK_Parqueadero_Tarifa_Parqueadero ON Parqueadero_Tarifa (k_idParq
 CREATE INDEX IXFK_Parqueadero_Tarifa_Tarifa ON Parqueadero_Tarifa (k_codigoTarifa ASC)
 ;
 
---ALTER TABLE Servicio ADD CONSTRAINT PK_Servicio
-	--PRIMARY KEY (k_idServicio)
---;
-ALTER TABLE Servicio ADD COLUMN k_idServicio SERIAL PRIMARY KEY;
+ALTER TABLE Servicio ADD CONSTRAINT PK_Servicio
+	PRIMARY KEY (k_idServicio)
+;
+--ALTER TABLE Servicio ADD COLUMN k_idServicio SERIAL PRIMARY KEY;
 
 ALTER TABLE Servicio ADD CONSTRAINT CK_k_idServicio CHECK (k_idServicio > 0)
 ;

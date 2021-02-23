@@ -5,56 +5,58 @@
  */
 package modelo.logica;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author lenovo
  */
 public class Servicio {
     
-    protected int k_idServicio;
-    protected String f_fycEntrada;
-    protected String f_fycSalida;
-    protected int q_valorAPagar;
-    protected int k_idVehiculo;
+    protected int k_idservicio;
+    protected Timestamp f_fycentrada;
+    protected Timestamp f_fycsalida;
+    protected int q_valorapagar;
+    protected int k_idvehiculo;
 
-    public int getK_idServicio() {
-        return k_idServicio;
+    public int getK_idservicio() {
+        return k_idservicio;
     }
 
-    public void setK_idServicio(int k_idServicio) {
-        this.k_idServicio = k_idServicio;
+    public void setK_idservicio(int k_idservicio) {
+        this.k_idservicio = k_idservicio;
     }
 
-    public String getF_fycEntrada() {
-        return f_fycEntrada;
+    public Timestamp getF_fycentrada() {
+        return f_fycentrada;
     }
 
-    public void setF_fycEntrada(String f_fycEntrada) {
-        this.f_fycEntrada = f_fycEntrada;
+    public void setF_fycentrada(Timestamp f_fycentrada) {
+        this.f_fycentrada = f_fycentrada;
     }
 
-    public String getF_fycSalida() {
-        return f_fycSalida;
+    public Timestamp getF_fycsalida() {
+        return f_fycsalida;
     }
 
-    public void setF_fycSalida(String f_fycSalida) {
-        this.f_fycSalida = f_fycSalida;
+    public void setF_fycsalida(Timestamp f_fycsalida) {
+        this.f_fycsalida = f_fycsalida;
     }
 
-    public int getQ_valorAPagar() {
-        return q_valorAPagar;
+    public int getQ_valorapagar() {
+        return q_valorapagar;
     }
 
-    public void setQ_valorAPagar(int q_valorAPagar) {
-        this.q_valorAPagar = q_valorAPagar;
+    public void setQ_valorapagar(int q_valorapagar) {
+        this.q_valorapagar = q_valorapagar;
     }
 
-    public int getK_idVehiculo() {
-        return k_idVehiculo;
+    public int getK_idvehiculo() {
+        return k_idvehiculo;
     }
 
-    public void setK_idVehiculo(int k_idVehiculo) {
-        this.k_idVehiculo = k_idVehiculo;
+    public void setK_idvehiculo(int k_idvehiculo) {
+        this.k_idvehiculo = k_idvehiculo;
     }
-    
 }
+    

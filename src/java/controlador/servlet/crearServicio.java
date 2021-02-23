@@ -6,8 +6,13 @@
 package controlador.servlet;
 
 import controlador.util.CaException;
+import controlador.util.ServiceLocator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -77,19 +82,47 @@ public class crearServicio extends HttpServlet {
             Logger.getLogger(crearServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        servicio.setF_fycEntrada(request.getParameter("f_fycentrada"));
-        servicio.setK_idVehiculo(Integer.valueOf(request.getParameter("k_idVehiculo")));
-        
         if(cupos == false){
             System.out.println ("1");
         }
         else{
+            SimpleDateFormat dateFormat = new SimpleDateFormat( 
+            "yyyy-MM-dd hh:mm:ss:SSS");
+            Date dSalida = null;
+            Date dEntrada = null;
+            
+            try {
+                dEntrada = dateFormat.parse(request.getParameter("f_fycentrada"));  
+            } catch (ParseException ex) {
+                Logger.getLogger(crearServicio.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+                System.out.println ("fff");
+            }
+            
+            try {
+                dSalida = dateFormat.parse("0001/01/01 01:01:01:01");
+            } catch (ParseException ex) {
+                Logger.getLogger(crearServicio.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+                System.out.println ("fff");
+            }
+            
+            Timestamp tsEntrada = new Timestamp(dEntrada.getTime());
+            Timestamp tsSalida = new Timestamp(dSalida.getTime());
+            int q_valorapagar = 0;
+            int k_idservicio = Integer.valueOf(request.getParameter("k_idServicio"));
+            
+            servicio.setF_fycentrada(tsEntrada);
+            servicio.setF_fycsalida(tsSalida);
+            servicio.setK_idvehiculo(k_idVehiculo);
+            servicio.setQ_valorapagar(q_valorapagar);
+            servicio.setK_idservicio(k_idservicio);
+            
             try {
                 gestorS.incluirServicio();    
             } catch (CaException ex) {
                 Logger.getLogger(crearParqueadero.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println ("2");
         }
         
         response.sendRedirect("index.html");
