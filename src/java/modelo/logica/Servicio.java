@@ -5,6 +5,7 @@
  */
 package modelo.logica;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Timestamp;
 
 /**
@@ -14,8 +15,8 @@ import java.sql.Timestamp;
 public class Servicio {
     
     protected int k_idservicio;
-    protected Timestamp f_fycentrada;
-    protected Timestamp f_fycsalida;
+    protected String f_fycentrada;
+    protected String f_fycsalida;
     protected int q_valorapagar;
     protected int k_idvehiculo;
 
@@ -27,19 +28,19 @@ public class Servicio {
         this.k_idservicio = k_idservicio;
     }
 
-    public Timestamp getF_fycentrada() {
+    public String getF_fycentrada() {
         return f_fycentrada;
     }
 
-    public void setF_fycentrada(Timestamp f_fycentrada) {
+    public void setF_fycentrada(String f_fycentrada) {
         this.f_fycentrada = f_fycentrada;
     }
 
-    public Timestamp getF_fycsalida() {
+    public String getF_fycsalida() {
         return f_fycsalida;
     }
 
-    public void setF_fycsalida(Timestamp f_fycsalida) {
+    public void setF_fycsalida(String f_fycsalida) {
         this.f_fycsalida = f_fycsalida;
     }
 

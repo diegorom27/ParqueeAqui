@@ -11,7 +11,7 @@
 <%@page import="modelo.logica.GestorParqueadero"%>
 <%
     Date date = new Date();
-    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
     GestorParqueadero gestor1 = new GestorParqueadero();
     GestorParqueadero gestor2 = new GestorParqueadero();
     

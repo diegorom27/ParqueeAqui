@@ -108,8 +108,10 @@ CREATE TABLE Parqueadero_Tarifa
 CREATE TABLE Servicio
 (
 	k_idServicio integer NOT NULL,    -- identificador del servicio
-	f_FYCEntrada timestamp without time zone NOT NULL,    -- Fecha y hora de entrada de un vehiculo.
-	f_FYCSalida timestamp without time zone NULL,    -- Fecha y hora de salida de un vehiculo.
+	--f_FYCEntrada timestamp without time zone NOT NULL,    -- Fecha y hora de entrada de un vehiculo.
+	f_FYCEntrada date NOT NULL,    -- Fecha y hora de entrada de un vehiculo.
+	--f_FYCSalida timestamp without time zone NULL,    -- Fecha y hora de salida de un vehiculo.
+	f_FYCSalida date NULL,    -- Fecha y hora de salida de un vehiculo.
 	q_valorAPagar integer NOT NULL,    -- valor a pagar por la duración del servicio.
 	k_idVehiculo integer NOT NULL    -- identificador del vehiculo.
 )
@@ -239,7 +241,7 @@ ALTER TABLE Servicio ADD CONSTRAINT PK_Servicio
 ALTER TABLE Servicio ADD CONSTRAINT CK_k_idServicio CHECK (k_idServicio > 0)
 ;
 
-ALTER TABLE Servicio ADD CONSTRAINT CK_q_valorAPagar CHECK (q_valorAPagar > 0)
+ALTER TABLE Servicio ADD CONSTRAINT CK_q_valorAPagar CHECK (q_valorAPagar >= 0)
 ;
 
 ALTER TABLE Servicio ADD CONSTRAINT CK_k_idVehiculo CHECK (k_idVehiculo > 0)

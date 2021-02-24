@@ -8,6 +8,7 @@ package modelo.database;
 import controlador.util.CaException;
 import controlador.util.ServiceLocator;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,15 +50,16 @@ public class ServicioDAO {
        solo añade los valores id, fech entrada, id vehículo*/
     public void incluirServicio() throws CaException {
         try {
-            String strSQL = "INSERT INTO servicio(f_fycentrada, f_fycsalida, "
-                            + "q_valorapagar, k_idvehiculo, k_idservicio) VALUES(?,?,?,?,?)";
+            //String strSQL = "INSERT INTO Parqueadero (k_idParqueadero, v_nfs, q_areas, n_direccion, n_localidad) VALUES(?,?,?,?,?)";
+            //String strSQL = "INSERT INTO servicio (f_fycentrada, f_fycsalida, q_valorapagar, k_idvehiculo, k_idservicio) VALUES(LOCALTIMESTAMP(2), LOCALTIMESTAMP(2), " + q_valorapagar + ", 123, 123456)";
+            String strSQL = "INSERT INTO servicio (k_idservicio, f_fycentrada, f_fycsalida, q_valorapagar, k_idvehiculo) VALUES(?,?,?,?,?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setTimestamp(1, servicio.getF_fycentrada());
-            prepStmt.setTimestamp(2, servicio.getF_fycsalida());
-            prepStmt.setInt(3, servicio.getQ_valorapagar());
-            prepStmt.setInt(4, servicio.getK_idvehiculo());
-            prepStmt.setInt(5, servicio.getK_idservicio());
+            prepStmt.setInt(1, servicio.getK_idservicio());
+            prepStmt.setDate(2,Date.valueOf(servicio.getF_fycentrada()));
+            prepStmt.setDate(3, Date.valueOf(servicio.getF_fycsalida()));
+            prepStmt.setInt(4, servicio.getQ_valorapagar());
+            prepStmt.setInt(5, servicio.getK_idvehiculo());
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
@@ -66,7 +68,7 @@ public class ServicioDAO {
         } finally {
             ServiceLocator.getInstance().liberarConexion();
         }
-        this.asignarCupo(String.valueOf(servicio.getK_idvehiculo()), String.valueOf(servicio.getK_idservicio()));
+        //this.asignarCupo(String.valueOf(servicio.getK_idvehiculo()), String.valueOf(servicio.getK_idservicio()));
     }
     
     // Se actualiza la tabla de servicios con los valores que faltaban
@@ -76,7 +78,7 @@ public class ServicioDAO {
                             + " WHERE k_idservicio =?";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setTimestamp(1, servicio.getF_fycsalida());
+            prepStmt.setString(1, servicio.getF_fycsalida());
             prepStmt.setInt(2, servicio.getQ_valorapagar());
             prepStmt.setInt(3, servicio.getK_idservicio());
             prepStmt.executeUpdate();
@@ -100,8 +102,8 @@ public class ServicioDAO {
             while (rs.next()) {
                 Servicio servicio1 = new Servicio();
                 servicio1.setK_idservicio(rs.getInt(1));
-                servicio1.setF_fycentrada(rs.getTimestamp(2));
-                servicio1.setF_fycsalida(rs.getTimestamp(3));
+                servicio1.setF_fycentrada(rs.getString(2));
+                servicio1.setF_fycsalida(rs.getString(3));
                 servicio1.setQ_valorapagar(rs.getInt(4));
                 servicio1.setK_idvehiculo(rs.getInt(5));
 
@@ -336,7 +338,7 @@ public class ServicioDAO {
                             + k_idcupo + ";";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setTimestamp(1, servicio.getF_fycsalida());
+            prepStmt.setString(1, servicio.getF_fycsalida());
             prepStmt.setInt(2, servicio.getQ_valorapagar());
             prepStmt.setInt(3, servicio.getK_idservicio());
             prepStmt.executeUpdate();

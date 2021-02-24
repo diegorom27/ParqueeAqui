@@ -50,7 +50,7 @@ public class ServiceLocator {
                     //String url = "jdbc:oracle:thin:@localhost:1521:xe";
                     String url = "jdbc:postgresql://localhost:5432/Parqueadero";
                     String usuario = "postgres";
-                    String password = "hermanos2728"; //Debe reemplazarse por el password en su propia instalación
+                    String password = "20192020036"; //Debe reemplazarse por el password en su propia instalación
                     Class.forName("org.postgresql.Driver");
                     conexion = DriverManager.getConnection(url, usuario, password);
                     conexion.setAutoCommit(false);
