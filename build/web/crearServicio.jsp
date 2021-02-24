@@ -49,7 +49,7 @@
             </ul>
         </header>
         <div id="contenedorContrato">
-        <form id="creacionContrato" action="crearServicio" method="post">
+        <form id="creacionSevicio" action="crearServicio" method="post">
             <div class="crearContrato" id="encontrarParqueadero">
                 <label>Parqueadero:</label>
                 <input name="k_idParqueadero" id="buscarParqueadero" list="parqueaderos" placeholder="buscar" required>
@@ -66,14 +66,14 @@
                 <input name="n_color" id="color" autofocus>
                 <label>Tipo:</label>
                 <input name="i_tipo" id="tipo" type="number" step="1" min="1" max="6" autofocus>
+            </div >
+            <div class="crearContrato" id="creaContrato">
                 <h3>Servicio</h3>
                 <label>ID:</label>
                 <input name="k_idServicio" id="identificadorServicio" autofocus>
-            </div >
-            <div class="crearContrato" id="creaContrato">
                 <%--  <h3>Servicio</h3>
                 <label>Fecha de entrada:</label>--%>
-                <input name="f_fycentrada" id="f_fycentrada" value="<%=formato.format(date)%>" hidden required>
+                <input name="f_fycentrada" id="f_fycentrada" value="<%=formato.format(date)%>" placeholder="fecha entrada" hidden required>
             </div>
             <button type="submit" id="buttonCrearServicio">submit</button>
         </form>
