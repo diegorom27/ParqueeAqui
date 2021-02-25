@@ -4,6 +4,7 @@
     Author     : lenovo
 --%>
 
+<%@page import="modelo.logica.Servicio"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="modelo.logica.Vehiculo"%>
 <%@page import="java.util.Date"%>
@@ -12,12 +13,12 @@
 <%@page import="modelo.logica.GestorParqueadero"%>
 <%
     Date date = new Date();
-    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
     GestorParqueadero gestor1 = new GestorParqueadero();
     GestorParqueadero gestor2 = new GestorParqueadero();
     
     ArrayList<Parqueadero> p = gestor1.cargarParqueaderos();
-    ArrayList<Vehiculo> v = gestor2.cargarVehiculos();
+    ArrayList<Servicio> s = gestor2.cargarServicios();
     int i = 0;
     int j = 0;
     int w = 0;
@@ -72,9 +73,9 @@
             <%j++;
                 }%>
         </datalist>
-        <datalist id="vehiculos">
-            <% while (w < v.size()) {%>
-            <option><%= v.get(w).getK_idVehiculo()%></option>
+        <datalist id="servicios">
+            <% while (w < s.size()) {%>
+            <option><%= s.get(w).getK_idservicio()%></option>
             <%w++;
                 }%>
         </datalist> 

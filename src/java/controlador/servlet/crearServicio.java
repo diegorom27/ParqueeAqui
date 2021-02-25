@@ -76,7 +76,12 @@ public class crearServicio extends HttpServlet {
             k_idVehiculo = Integer.valueOf(k_idVehiculoSearch);
         }
         
-        /*boolean cupos = false;
+        boolean cupos = false;
+        String f_fycentrada;
+        String f_fycsalida=request.getParameter("f_fycentrada");
+        int q_valorapagar = 0;
+        int k_idservicio = Integer.valueOf(request.getParameter("k_idServicio"));
+        
         try {
             cupos = gestorS.verificarCupos(String.valueOf(k_idVehiculo), String.valueOf(k_idParqueadero));
         } catch (CaException ex) {
@@ -84,16 +89,11 @@ public class crearServicio extends HttpServlet {
         }
         
         if(cupos==false){
-            
+            f_fycentrada="";
         }
         else{
-            
-        }*/
-        
-        String f_fycentrada=request.getParameter("f_fycentrada");
-        String f_fycsalida=request.getParameter("f_fycentrada");
-        int q_valorapagar = 0;
-        int k_idservicio = Integer.valueOf(request.getParameter("k_idServicio"));
+            f_fycentrada=request.getParameter("f_fycentrada");
+        }
         
         servicio.setF_fycentrada(f_fycentrada);
         servicio.setF_fycsalida(f_fycsalida);

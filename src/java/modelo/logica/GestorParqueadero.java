@@ -138,7 +138,12 @@ public class GestorParqueadero {
     }
     
     //verificar si el vehículo tiene contrato
-    public boolean verificarContrato(String k_idvehiculo)throws CaException{
-        return servicioDAO.verificarContrato(k_idvehiculo);
+    public boolean verificarContrato(String k_idservicio)throws CaException{
+        return servicioDAO.verificarContrato(k_idservicio);
+    }
+    
+    //actualizar datos de servicio, cupo, area cuando un vehículo sale
+    public void salida(String k_idparqueadero) throws CaException {
+        servicioDAO.salida(k_idparqueadero);
     }
 }
