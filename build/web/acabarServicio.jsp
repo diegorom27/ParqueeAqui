@@ -27,7 +27,7 @@
 
     <head>
         <meta charset='utf-8'>
-        <title> Ingreso</title>
+        <title> Salida</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' >
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap" rel="stylesheet">
         <LINK REL=StyleSheet HREF="assets/style.css" TYPE="text/css" MEDIA=screen>
@@ -59,11 +59,9 @@
             <div class="crearContrato" id="creaVehiculo">
                 <h3>Servicio</h3>
                 <label>Buscar:</label>
-                <input name="k_idVehiculoSearch" id="buscarVehiculo" list="vehiculos" placeholder="buscar">
-                <label>Fecha de salida:</label>
-                <input name="f_fycsalida" id="f_fycsalida" value="<%=formato.format(date)%>" required>
-                <label>Valor a pagar:</label>
-                <input name="q_valorapagar" id="q_valorapagar" required>
+                <input name="k_idServicioSearch" id="buscarServicio" list="servicios" placeholder="buscar">
+                <%-- <label>Fecha de salida:</label>--%>
+                <input name="f_fycsalida" id="f_fycsalida" value="<%=formato.format(date)%>" placeholder="fecha salida" hidden required>
             </div >
             <button type="submit" id="buttonCrearServicio">submit</button>
         </form>
