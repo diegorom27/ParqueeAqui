@@ -444,6 +444,7 @@ public class ServicioDAO {
         }
     }
     
+    
     //* Asigna un cupo a un vehículo que esta por ingresar
     private void asignarCupo(String k_idvehiculo, String k_idservicio) throws CaException{
         String i_tipo = this.hallarTipo(k_idvehiculo);
