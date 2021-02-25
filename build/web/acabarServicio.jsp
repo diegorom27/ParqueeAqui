@@ -41,18 +41,16 @@
                 <img class="logo" src="assets/img/logo-removebg-preview.png" alt="">
             </a>
             <ul>
-                <li><a href="#">Registro de parqueadero</a></li>
-                <li><a href="#">Gestion de parqueadero</a></li>
-                <li><a href="#">Ingreso </a></li>
-                <li><a id="elegida" href="#">Salida</a></li>
-                <li><a href="#">Historial Ingresos</a></li>
-                <li><a href="#">Vinculación contrato</a></li>
-                <li><a href="#">Gestión contratos</a></li>
-                <li><a href="#">Estadisticas</a></li>
+                <li ><a href="crearParqueadero.jsp">Registro de parqueadero</a></li>
+                <li><a href="editarParqueadero.jsp">Gestion de parqueadero</a></li>
+                <li><a href="crearServicio.jsp">Ingreso</a></li>
+                <li><a href="acabarServicio.jsp">Salida</a></li>
+                <li><a href="crearContrato.jsp">Vinculación contrato</a></li>
+                <li><a href="elegirEstadisticas.jsp">Estadisticas</a></li>
             </ul>
         </header>
-        <div id="contenedorContrato">
-        <form id="creacionContrato" action="acabarServicio" method="post">
+        <div id="contenedorServicioFin">
+        <form id="creacionSevicio" action="acabarServicio" method="post">
             <div class="crearContrato" id="encontrarParqueadero">
                 <label>Parqueadero:</label>
                 <input name="k_idParqueadero" id="buscarParqueadero" list="parqueaderos" placeholder="buscar" required>

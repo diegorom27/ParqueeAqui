@@ -26,7 +26,7 @@ public class ServicioDAO {
     
     private Servicio servicio;
     private ArrayList<Servicio> servicios;
-    
+    private ArrayList<Servicio> servicios2 = new ArrayList();
     //Constructor
     
     public ServicioDAO() {
@@ -505,5 +505,50 @@ public class ServicioDAO {
         } finally {
             ServiceLocator.getInstance().liberarConexion();
         }
-    }     
+    }
+    public int buscarServicioPorFecha() throws CaException {
+        int servicios = 0;
+
+        try {
+            String strSQL = "select count( k_idservicio) from servicio s WHERE f_fycentrada BETWEEN ? and ? GROUP BY f_fycentrada";
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            prepStmt.setDate(1, Date.valueOf(servicio.getF_fycentrada()));
+            prepStmt.setDate(2, Date.valueOf(servicio.getF_fycsalida()));
+            ResultSet rs = prepStmt.executeQuery();
+            while(rs.next()){
+                servicios = servicios + rs.getInt(1);
+            }    
+        } catch (SQLException e) {
+            throw new CaException("ServicioDAO", "No pudo recuperar el servicio" + e.getMessage());
+        } finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }
+        return servicios;
+    }
+    public ArrayList<Servicio> buscarServiciPorVehiculo() throws CaException {
+        int servicios = 0;
+        try {
+            String strSQL = "select v.k_idvehiculo, f_fycentrada, f_fycsalida from servicio s, vehiculo v WHERE s.k_idvehiculo= v.k_idvehiculo AND v.k_idvehiculo=?";
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            prepStmt.setInt(1, Integer.valueOf(servicio.getK_idservicio()));
+            ResultSet rs = prepStmt.executeQuery();
+            
+            
+            while (rs.next()) {
+                Servicio servicio1 = new Servicio();
+                servicio1.setK_idservicio(rs.getInt(1));
+                servicio1.setF_fycentrada(rs.getString(2));
+                servicio1.setF_fycsalida(rs.getString(3));
+                servicios2.add(servicio1);
+            }
+
+        } catch (SQLException e) {
+            throw new CaException("ServicioDAO", "No pudo recuperar el servicio" + e.getMessage());
+        } finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }
+        return servicios2;
+    }
 }

@@ -24,13 +24,12 @@
         <img class="logo" src="assets/img/logo-removebg-preview.png" alt="">
         </a>
         <ul>
-            <li><a id="elegida" href="#">Registro de parqueadero</a></li>
+            <li ><a href="crearParqueadero.jsp">Registro de parqueadero</a></li>
             <li><a href="editarParqueadero.jsp">Gestion de parqueadero</a></li>
-            <li><a href="#">Ingreso </a></li>
-            <li><a href="#">Historial Ingresos</a></li>
+            <li><a href="crearServicio.jsp">Ingreso</a></li>
+            <li><a href="acabarServicio.jsp">Salida</a></li>
             <li><a href="crearContrato.jsp">Vinculación contrato</a></li>
-            <li><a href="#">Gestión contratos</a></li>
-            <li><a href="#">Estadisticas</a></li>
+            <li><a href="elegirEstadisticas.jsp">Estadisticas</a></li>
         </ul>
     </header>
     <div class="contenedor">

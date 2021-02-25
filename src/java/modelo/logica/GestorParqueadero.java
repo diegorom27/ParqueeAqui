@@ -146,4 +146,12 @@ public class GestorParqueadero {
     public void salida(String k_idparqueadero) throws CaException {
         servicioDAO.salida(k_idparqueadero);
     }
+    
+    public ArrayList<Servicio> buscarServiciPorVehiculo() throws CaException{
+        return servicioDAO.buscarServiciPorVehiculo();
+    }
+    public int buscarServiciPorFecha() throws CaException{
+        return servicioDAO.buscarServicioPorFecha();
+    }
+    
 }

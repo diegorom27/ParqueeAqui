@@ -20,6 +20,14 @@
         <servlet-name>acabarServicio</servlet-name>
         <servlet-class>controlador.servlet.acabarServicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>estadisticaId</servlet-name>
+        <servlet-class>controlador.servlet.estadisticaId</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>estadisticaFecha</servlet-name>
+        <servlet-class>controlador.servlet.estadisticaFecha</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearParqueadero</servlet-name>
         <url-pattern>/crearParqueadero</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>acabarServicio</servlet-name>
         <url-pattern>/acabarServicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>estadisticaId</servlet-name>
+        <url-pattern>/estadisticaId</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>estadisticaFecha</servlet-name>
+        <url-pattern>/estadisticaFecha</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
