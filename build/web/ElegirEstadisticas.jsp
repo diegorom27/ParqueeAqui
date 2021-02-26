@@ -36,7 +36,7 @@ Author     : diego
                 <li><a href="crearServicio.jsp">Ingreso</a></li>
                 <li><a href="acabarServicio.jsp">Salida</a></li>
                 <li><a href="crearContrato.jsp">Vinculación contrato</a></li>
-                <li><a href="elegirEstadisticas.jsp">Estadisticas</a></li>
+               <li><a href="elegirEstadisticas.jsp">Estadisticas</a></li>
             </ul>
         </header>
         <h1 class="titulo" id="titulo1">Estadisticas</h1>
