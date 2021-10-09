@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/src/java/controlador/servlet/estadisticaId.java</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/src/java/controlador/servlet/estadisticaFecha.java</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/src/java/modelo/logica/GestorParqueadero.java</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/src/java/modelo/database/ServicioDAO.java</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/src/java/controlador/servlet/crearServicio.java</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/web/crearParqueadero.jsp</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/web/crearAreas.jsp</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/web/estadisticaId.jsp</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/web/index.html</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/web/estadisticaF.jsp</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/web/elegirEstadisticas.jsp</file>
-            <file>file:/C:/Users/diego/OneDrive/Documentos/NetBeansProjects/ParqueeAqui/src/java/controlador/servlet/crearParqueadero.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
